@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-12-21 15:55:14
- * @LastEditTime: 2021-12-21 20:50:03
+ * @LastEditTime: 2021-12-21 22:52:33
  * @FilePath: /new-simple-todo/my-todo/README.md
 -->
 # A todo-project..
@@ -46,6 +46,9 @@ $ poetry init
 $ poetry add [dependency]
 ```
 
+#### problems:
+* how to transfer the response data of axios into typescript type????????
+* tiring..
 
 
 
