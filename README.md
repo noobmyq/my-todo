@@ -4,7 +4,7 @@
  * @FilePath: /new-simple-todo/my-todo/README.md
 -->
 # A todo-project..
-done by me and PJ
+by me and PJ
 hopefully it will be easy..
 
 ## start at Dec.21..
