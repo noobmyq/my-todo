@@ -1,25 +1,26 @@
 <!--
  * @Date: 2021-12-21 15:55:14
- * @LastEditTime: 2021-12-21 22:52:33
+ * @LastEditTime: 2021-12-22 00:32:09
  * @FilePath: /new-simple-todo/my-todo/README.md
 -->
 # A todo-project..
 by me and PJ \
 hopefully it will be easy..
 but it is impossible..
+this readme is more like a diary to record the process..
 
 ## frontend
 ```
 $ cd frontend
 $ npm install
-$ npm run
+$ npm start
 ```
 
 ## backend
 ```
 $ cd backend
 $ poetry install
-$ poetry run python -m todo serve --debug
+$ poetry run python -m mytodo serve --debug
 ```
 please go to http://127.0.0.1:8000
 ## start at Dec.21..
@@ -47,8 +48,9 @@ $ poetry add [dependency]
 ```
 
 #### problems:
-* how to transfer the response data of axios into typescript type????????
-* tiring..
+* ~~~how to transfer the response data of axios into typescript type????????~~~
+* tired..
 
-
+#### update at 12:31a.m.
+* use console.log to find out the problem!! 
 
