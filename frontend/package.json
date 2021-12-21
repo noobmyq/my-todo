@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/core": "^0.8.0",
+    "@emotion/core": "^10.3.1",
+    "@emotion/styled": "^10.3.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -10,6 +13,7 @@
     "@types/node": "^16.11.15",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
+    "emotion-theming": "^10.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
