@@ -1,14 +1,12 @@
 /*
  * @Date: 2021-12-21 18:08:09
- * @LastEditTime: 2021-12-21 19:39:01
+ * @LastEditTime: 2021-12-21 20:14:31
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/App.tsx
  */
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Header from "./Header"
 import { observer } from "mobx-react";
-import { ThemeProvider } from 'emotion-theming';
 import { Layout } from 'antd';
 
 
@@ -20,9 +18,6 @@ import { Layout } from 'antd';
     };
     render(): any {
         return (<Layout>
-            {/* <Layout.Header className='todo-headers'>
-                Todo List:
-        </Layout.Header>*/}
             <Header />
             <Layout.Content>
                 hello

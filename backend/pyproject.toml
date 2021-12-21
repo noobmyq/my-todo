@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "app"
+version = "0.1.0"
+description = ""
+authors = ["noobmyq <2331029011@qq.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+uvicorn = {extras = ["standard"], version = "^0.16.0"}
+fastapi = "^0.70.1"
+
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
