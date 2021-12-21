@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-12-21 15:55:14
- * @LastEditTime: 2021-12-21 18:19:41
+ * @LastEditTime: 2021-12-21 19:40:28
  * @FilePath: /new-simple-todo/my-todo/README.md
 -->
 # A todo-project..
@@ -16,5 +16,15 @@ hopefully it will be easy..
 * build a structure of the front & backend using react.js
 ```
 $ npx create-react-app frontend --template typescript
+$ cd frontend
+$ npm install mobx-react --save    
+$ npm install antd --save       
 ```
+* use the structure to create a webpage that can access..
+```
+$ cd frontend
+$ npm install
+$ npm run
+```
+
 

@@ -1,36 +1,35 @@
 /*
  * @Date: 2021-12-21 18:08:09
- * @LastEditTime: 2021-12-21 18:17:34
+ * @LastEditTime: 2021-12-21 19:39:01
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/App.tsx
  */
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Layout } from 'antd'
-// import {observer} from "mo"
-
+import Header from "./Header"
+import { observer } from "mobx-react";
+import { ThemeProvider } from 'emotion-theming';
+import { Layout } from 'antd';
 
 
 // default
-function App() {
-    return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-        </div>
-    );
-}
+@observer class Todo extends Component<any, { sortBy: string }> {
+    constructor(props: any) {
+        super(props);
+        this.state = { sortBy: 'date', }
+    };
+    render(): any {
+        return (<Layout>
+            {/* <Layout.Header className='todo-headers'>
+                Todo List:
+        </Layout.Header>*/}
+            <Header />
+            <Layout.Content>
+                hello
+            </Layout.Content>
+        </Layout>
+        )
+    }
 
-export default App;
+}
+export default Todo;
