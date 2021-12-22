@@ -8,6 +8,7 @@ authors = ["noobmyq <2331029011@qq.com>"]
 python = "^3.8"
 uvicorn = {extras = ["standard"], version = "^0.16.0"}
 fastapi = "^0.70.1"
+SQLAlchemy = "^1.4.28"
 
 
 [tool.poetry.dev-dependencies]
