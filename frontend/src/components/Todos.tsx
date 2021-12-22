@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 20:57:47
- * @LastEditTime: 2021-12-22 09:58:54
+ * @LastEditTime: 2021-12-22 11:36:09
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/Todos.tsx
  */
 import { action, observable } from 'mobx'
@@ -20,6 +20,15 @@ class Provider {
 const provider = new Provider();
 class TodoContext {
     @observable todoList: TodoItem[] = [];
+
+    @action AddTodos(item: TodoItem): void {
+        console.log(item);
+        provider.getInstance().post('/todo/', item)
+            .then(() => {
+                this.FetchTodos();
+            }).catch(() => { message.error('创建失败') })
+
+    }
     @action FetchTodos(): TodoItem[] {
         provider.getInstance().get('/todo/').then((response: AxiosResponse) => {
             this.todoList = response.data.data;

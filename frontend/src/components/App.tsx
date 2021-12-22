@@ -1,34 +1,46 @@
 /*
  * @Date: 2021-12-21 18:08:09
- * @LastEditTime: 2021-12-22 10:09:54
+ * @LastEditTime: 2021-12-22 12:13:11
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/App.tsx
  */
-import React, { Component } from 'react';
+import React, { Component, FormEvent, FormEventHandler } from 'react';
 import './App.css';
 import Header from "./Header"
 import { observer } from "mobx-react";
-import { Layout, List, Drawer, Row } from 'antd';
-import Todos from './Todos';
+import { Layout, List, Row, Form, Button, Select } from 'antd';
 import TodoContext from './Todos';
 import { TodoItem } from '../constant/interface';
-import { Content } from 'antd/lib/layout/layout';
-import Sider from 'antd/lib/layout/Sider';
+import todoContext from './Todos';
+
+
 // default
 @observer class Todo extends Component<any, { sortBy: string }> {
     constructor(props: any) {
         super(props);
         this.state = { sortBy: 'date', }
     };
-
+    submit(e: FormEvent) {
+        const newTodo: TodoItem = {
+            id: String(todoContext.todoList.length),
+            item: "New item"
+        }
+        TodoContext.AddTodos(newTodo);
+    }
     render() {
         const todoData = TodoContext.FetchTodos();
-        console.log(todoData[0])
+        console.log(todoData)
         return (<Layout>
             <Header />
-            <div>
-                {/* {todoData} */}
+            <div className='create-item'>
+                <Form layout="inline" onClick={this.submit}>
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit" >
+                            创建
+                        </Button>
+                    </Form.Item>
+                </Form>
             </div>
-            <Content className='todoList'>
+            <div className='todoList'>
                 <Row>
                     <List
                         itemLayout="vertical"
@@ -43,7 +55,7 @@ import Sider from 'antd/lib/layout/Sider';
                         }
                     ></List>
                 </Row>
-            </Content>
+            </div>
         </Layout >
         )
     }
