@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-12-21 15:55:14
- * @LastEditTime: 2021-12-22 12:42:20
+ * @LastEditTime: 2021-12-22 13:54:26
  * @FilePath: /new-simple-todo/my-todo/README.md
 -->
 # A todo-project..
@@ -8,7 +8,7 @@ by me and PJ \
 hopefully it will be easy..
 but it is impossible..
 this readme is more like a diary to record the process..
-
+will reorganize later
 ## frontend
 ```
 $ cd frontend
@@ -58,6 +58,9 @@ $ poetry add [dependency]
 
 #### backend
 * try using mysqlmodel
+```
+$ poetry add sqlalchemy
+```
 #### problems:
 * ~~strange... onSubmit is a method described in docs... not resolved..copy and paste the node-module from a successful version~~(use onClick to substitute)
 ```
