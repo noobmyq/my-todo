@@ -1,6 +1,6 @@
 '''
 Date: 2021-12-22 13:02:22
-LastEditTime: 2021-12-22 20:22:40
+LastEditTime: 2021-12-22 21:43:36
 FilePath: /new-simple-todo/my-todo/backend/mytodo/crud.py
 '''
 from sqlalchemy.orm import Session
@@ -35,7 +35,18 @@ def delete_item(db: Session, item_id: int):
 
 def clear_item(db: Session):
     a = get_items_num(db)
-    for i in range(0, a+1):
-        print(i)
-        delete_item(db, i)
+    while a != 0:
+        item = db.query(models.Item).first()
+        id = item.id
+        delete_item(db, item_id=id)
+        a = get_items_num(db)
     return get_items_num(db)
+
+
+def get_current_id(db: Session):
+    max = 0
+    for i in range(0, get_items_num(db)):
+        item = db.query(models.Item).all()[i]
+        if int(item.id) > max:
+            max = int(item.id)
+    return max+1

@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 18:08:09
- * @LastEditTime: 2021-12-22 21:20:42
+ * @LastEditTime: 2021-12-22 21:50:57
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/App.tsx
  */
 import React, { Component, FormEvent, useDebugValue } from 'react';
@@ -102,11 +102,24 @@ import { useForm } from 'antd/es/form/Form';
                             itemLayout="horizontal"
                             dataSource={todoData}
                             renderItem={item =>
-                                <List.Item actions={[<Button onClick={() => {
-                                    TodoContext.RemoveTodos(item)
-                                }}>
-                                    删除
-                                </Button>, <a key="list-delete">修改</a>]}>
+
+                                <List.Item actions={[
+                                    <Button onClick={() => {
+                                        TodoContext.RemoveTodos(item)
+                                    }}>
+                                        删除
+                                    </Button>,
+                                    <Button onClick={() => {
+                                        TodoContext.RemoveTodos(item)
+                                    }}>
+                                        修改
+                                    </Button>,
+                                    <Button onClick={() => {
+                                        TodoContext.RemoveTodos(item)
+                                    }}>
+                                        完成
+                                    </Button>
+                                ]}>
                                     <List.Item.Meta
                                         title={<div>{item.id}</div>}
                                     />

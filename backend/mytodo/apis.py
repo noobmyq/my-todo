@@ -1,6 +1,6 @@
 '''
 Date: 2021-12-21 17:45:56
-LastEditTime: 2021-12-22 20:20:00
+LastEditTime: 2021-12-22 21:41:48
 FilePath: /new-simple-todo/my-todo/backend/mytodo/apis.py
 '''
 from typing import List
@@ -89,7 +89,7 @@ async def add_todo(item: schemas.ItemCreate, db: Session = Depends(get_db)):
     # return{
     #     "data": {"Todo added."}
     # }
-    num = crud.get_items_num(db)
+    num = crud.get_current_id(db)
     return crud.create_item(db=db, item=item, id=num)
 
 # clear
