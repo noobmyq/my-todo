@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-12-21 15:55:14
- * @LastEditTime: 2021-12-22 13:54:26
+ * @LastEditTime: 2021-12-22 20:29:05
  * @FilePath: /new-simple-todo/my-todo/README.md
 -->
 # A todo-project..
@@ -55,15 +55,17 @@ $ poetry add [dependency]
 
 #### frontend
 * using axios to post data to the backend
-
+* using form to collect data
 #### backend
 * try using mysqlmodel
 ```
 $ poetry add sqlalchemy
 ```
+* sqlmodel can connect with backend and frontend
 #### problems:
 * ~~strange... onSubmit is a method described in docs... not resolved..copy and paste the node-module from a successful version~~(use onClick to substitute)
 ```
 Type '{ children: Element; layout: "inline"; onSubmit: () => void; }' is not assignable to type 'IntrinsicAttributes & FormProps<any> & { children?: ReactNode; } & { ref?: Ref<FormInstan
 ```
 * cannot lively update the frontend
+* ugly frontend UI
