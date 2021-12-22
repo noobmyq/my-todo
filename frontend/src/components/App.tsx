@@ -1,13 +1,13 @@
 /*
  * @Date: 2021-12-21 18:08:09
- * @LastEditTime: 2021-12-22 20:25:42
+ * @LastEditTime: 2021-12-22 21:20:42
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/App.tsx
  */
 import React, { Component, FormEvent, useDebugValue } from 'react';
 import './App.css';
 import Header from "./Header"
 import { observer } from "mobx-react";
-import { Layout, List, Row, Form, Button, Checkbox, Input, FormProps, FormInstance } from 'antd';
+import { Layout, List, Row, Form, Button, Divider, Drawer, Input, FormProps, FormInstance, Typography } from 'antd';
 import TodoContext from './Todos';
 import { TodoItem } from '../constant/interface';
 import todoContext from './Todos';
@@ -21,6 +21,7 @@ import { useForm } from 'antd/es/form/Form';
         super(props);
         this.state = { sortBy: 'date' }
     };
+
     reset(e: FormEvent) {
         e.preventDefault();
         console.log("here");
@@ -38,11 +39,26 @@ import { useForm } from 'antd/es/form/Form';
         // this.props.form.resetFields();
         // });
     }
+    itemDelete = () => {
+
+    }
     render() {
         const Demo = () => {
             const [form] = Form.useForm();
         }
         const todoData = TodoContext.todoList;
+        const itemDelete = (
+            <div
+                style={{
+                    textAlign: 'center',
+                    marginTop: 12,
+                    height: 32,
+                    lineHeight: '32px',
+                }}
+            >
+                <Button onClick={this.itemDelete}>delete</Button>
+            </div>
+        );
 
         // console.log(todoData)
         return (
@@ -67,19 +83,6 @@ import { useForm } from 'antd/es/form/Form';
                         >
                             <Input />
                         </Form.Item>
-
-                        {/* <Form.Item
-                                label="Password"
-                                name="password"
-                                rules={[{ required: true, message: 'Please input your password!' }]}
-                            >
-                                <Input.Password />
-                            </Form.Item> */}
-
-                        {/* <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
-                                <Checkbox>Remember me</Checkbox>
-                            </Form.Item> */}
-
                         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                             <Button type="primary" htmlType="submit">
                                 Submit
@@ -99,14 +102,27 @@ import { useForm } from 'antd/es/form/Form';
                             itemLayout="horizontal"
                             dataSource={todoData}
                             renderItem={item =>
-                                <List.Item>
+                                <List.Item actions={[<Button onClick={() => {
+                                    TodoContext.RemoveTodos(item)
+                                }}>
+                                    删除
+                                </Button>, <a key="list-delete">修改</a>]}>
                                     <List.Item.Meta
                                         title={<div>{item.id}</div>}
-                                        description={item.content}
                                     />
+                                    <Typography.Text mark>[todo] </Typography.Text>{item.content}
                                 </List.Item>
                             }
-                        ></List>
+                        />
+                        <Divider orientation="left">Small Size</Divider>
+                        <Drawer
+                            title="修改任务信息"
+                            width={500}
+                            bodyStyle={{ paddingBottom: 80 }}
+                            destroyOnClose={true}
+                        >
+                            abc
+                        </Drawer>
                     </Row>
                 </div>
             </Layout >

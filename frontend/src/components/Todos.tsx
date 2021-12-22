@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 20:57:47
- * @LastEditTime: 2021-12-22 20:24:42
+ * @LastEditTime: 2021-12-22 21:20:59
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/Todos.tsx
  */
 import { action, observable } from 'mobx'
@@ -21,13 +21,23 @@ const provider = new Provider();
 class TodoContext {
     @observable todoList: TodoItem[] = [];
     @observable numofItems: number = 0;
+
+    @action RemoveTodos(item: TodoItem): void {
+        console.log(item);
+        const id: Number = item.id;
+        provider.getInstance().delete('/items/' + id.toString())
+            .then(() => {
+                this.FetchTodos();
+                this.numofItems = this.numofItems - 1;
+            }).catch(() => { message.error("删除失败") })
+    }
     @action ClearTodos(): void {
 
         provider.getInstance().delete('/items/clear')
             .then(() => {
                 this.FetchTodos();
                 this.numofItems = 0;
-            }).catch(() => { message.error("删除失败") })
+            }).catch(() => { message.error("清空失败") })
     }
     @action AddTodos(item: TodoItem): void {
         console.log(item);
