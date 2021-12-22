@@ -1,16 +1,15 @@
 '''
 Date: 2021-12-21 17:45:56
-LastEditTime: 2021-12-22 16:25:41
+LastEditTime: 2021-12-22 16:52:16
 FilePath: /new-simple-todo/my-todo/backend/mytodo/apis.py
 '''
 from typing import List
 
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
-
 from . import crud, models, schemas
 from .database import SessionLocal, engine
-
+from fastapi.middleware.cors import CORSMiddleware
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
@@ -24,20 +23,20 @@ def get_db():
         db.close()
 
 
-# # add origins
-# origins = [
-#     # "http://localhost:3000",
-#     "*"
-# ]
+# add origins
+origins = [
+    # "http://localhost:3000",
+    "*"
+]
 
-# # middleware
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=origins,
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
+# middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 # first api
@@ -62,8 +61,14 @@ def get_db():
 #     }
 # ]
 
+# test
+# @app.get("/first/", response_model=schemas.Item)
+# def first(db: Session = Depends(get_db)):
+#     return crud.create_item(db=db, , id=0)
 
 # get todo items
+
+
 @app.get("/todo/", tags=["todo"], response_model=List[schemas.Item])
 def get_todos(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     items = crud.get_items(db, skip=skip, limit=limit)
@@ -84,7 +89,6 @@ async def add_todo(item: schemas.ItemCreate, db: Session = Depends(get_db)):
     # return{
     #     "data": {"Todo added."}
     # }
-    print(item)
     num = crud.get_items_num(db)
     return crud.create_item(db=db, item=item, id=num)
 

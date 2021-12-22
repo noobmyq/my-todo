@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 18:08:09
- * @LastEditTime: 2021-12-22 12:40:36
+ * @LastEditTime: 2021-12-22 16:55:26
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/App.tsx
  */
 import React, { Component, FormEvent, FormEventHandler } from 'react';
@@ -21,14 +21,14 @@ import todoContext from './Todos';
     };
     submit(e: FormEvent) {
         const newTodo: TodoItem = {
-            id: String(todoContext.todoList.length),
-            item: "New item"
+            id: todoContext.numofItems,
+            content: "New item"
         }
         TodoContext.AddTodos(newTodo);
     }
     render() {
         const todoData = TodoContext.FetchTodos();
-        console.log(todoData)
+        console.log(todoData[0])
         return (<Layout>
             <Header />
             <div className='create-item'>
@@ -49,7 +49,7 @@ import todoContext from './Todos';
                             <List.Item>
                                 <List.Item.Meta
                                     title={<div>{item.id}</div>}
-                                    description={item.item}
+                                    description={item.content}
                                 />
                             </List.Item>
                         }
