@@ -1,6 +1,6 @@
 '''
 Date: 2021-12-21 17:45:56
-LastEditTime: 2021-12-22 10:04:14
+LastEditTime: 2021-12-22 10:13:10
 FilePath: /new-simple-todo/my-todo/backend/mytodo/apis.py
 '''
 from typing import Any
@@ -45,9 +45,17 @@ todos = [
     }
 ]
 
-# todo items
 
-
+# get todo items
 @app.get("/todo", tags=["todo"])
 async def get_todos() -> dict:
     return{"data": todos}
+
+
+# post todo items
+@app.post("/todo", tags=["todos"])
+async def add_todo(todo: dict) -> dict:
+    todo.append(todo)
+    return{
+        "data": {"Todo added."}
+    }
