@@ -1,6 +1,6 @@
 '''
 Date: 2021-12-21 17:45:56
-LastEditTime: 2021-12-22 15:32:25
+LastEditTime: 2021-12-22 16:15:59
 FilePath: /new-simple-todo/my-todo/backend/mytodo/apis.py
 '''
 from typing import List
@@ -79,11 +79,21 @@ def get_todos(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
 
 
 @app.post("/todo/", tags=["todos"], response_model=schemas.Item)
-async def add_todo(item: schemas.ItemCreate, db: Session = Depends(get_db)):
+async def add_todo(item: schemas.ItemCreate, id: int, db: Session = Depends(get_db)):
     # todos.append(jsonable_encoder(todo))
     # return{
     #     "data": {"Todo added."}
     # }
     print(item)
-    crud.create_item(db=db, item=item)
-    return{"data": "Todo added"}
+    return crud.create_item(db=db, item=item, id=id)
+
+
+# clear
+
+
+@app.delete('/items/{item_id}', response_model=schemas.Item)
+def delete_item(item_id: int, db: Session = Depends(get_db)):
+    db_item = crud.delete_item(db, item_id=item_id)
+    if db_item is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    return db_item
