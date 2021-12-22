@@ -1,6 +1,6 @@
 '''
 Date: 2021-12-21 17:45:56
-LastEditTime: 2021-12-22 16:52:16
+LastEditTime: 2021-12-22 20:20:00
 FilePath: /new-simple-todo/my-todo/backend/mytodo/apis.py
 '''
 from typing import List
@@ -92,8 +92,16 @@ async def add_todo(item: schemas.ItemCreate, db: Session = Depends(get_db)):
     num = crud.get_items_num(db)
     return crud.create_item(db=db, item=item, id=num)
 
-
 # clear
+
+
+@app.delete('/items/clear')
+def clear_all(db: Session = Depends(get_db)):
+    print("a")
+    return {"A": str(crud.clear_item(db))}
+
+
+# delete
 @app.delete('/items/{item_id}', response_model=schemas.Item)
 def delete_item(item_id: int, db: Session = Depends(get_db)):
     db_item = crud.delete_item(db, item_id=item_id)

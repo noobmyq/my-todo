@@ -1,6 +1,6 @@
 '''
 Date: 2021-12-22 13:02:22
-LastEditTime: 2021-12-22 16:27:40
+LastEditTime: 2021-12-22 20:22:40
 FilePath: /new-simple-todo/my-todo/backend/mytodo/crud.py
 '''
 from sqlalchemy.orm import Session
@@ -31,3 +31,11 @@ def delete_item(db: Session, item_id: int):
         db.commit()
         db.flush()
         return db_item
+
+
+def clear_item(db: Session):
+    a = get_items_num(db)
+    for i in range(0, a+1):
+        print(i)
+        delete_item(db, i)
+    return get_items_num(db)

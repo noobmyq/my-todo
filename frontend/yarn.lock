@@ -6425,7 +6425,7 @@
   dependencies:
     "mobx-react-lite" "^3.2.0"
 
-"mobx@^6.1.0":
+"mobx@^6.1.0", "mobx@^6.3.9":
   "integrity" "sha512-u9vhETRPgx6s+MD2NhGaOQJMJa/qszflwFxKryCXotERWY77ocdrRQUp7Jwt1urjefUXNj3fQbTnKrCV+kBaXw=="
   "resolved" "https://registry.npmjs.org/mobx/-/mobx-6.3.9.tgz"
   "version" "6.3.9"

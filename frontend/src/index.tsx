@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 18:08:09
- * @LastEditTime: 2021-12-21 19:25:28
+ * @LastEditTime: 2021-12-22 19:33:00
  * @FilePath: /new-simple-todo/my-todo/frontend/src/index.tsx
  */
 import React from 'react';
@@ -9,9 +9,6 @@ import './index.css';
 import App from './components/App';
 // import reportWebVitals from './reportWebVitals';
 import ReactDOM from 'react-dom';
-import { render } from 'react-dom';
-import Header from "./components/Header";
-import { ThemeProvider } from 'emotion-theming';
 
 ReactDOM.render(<App />, document.getElementById('root'))
 // If you want to start measuring performance in your app, pass a function
