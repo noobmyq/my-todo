@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 20:57:47
- * @LastEditTime: 2021-12-22 00:29:28
+ * @LastEditTime: 2021-12-22 09:58:54
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/Todos.tsx
  */
 import { action, observable } from 'mobx'
@@ -20,13 +20,10 @@ class Provider {
 const provider = new Provider();
 class TodoContext {
     @observable todoList: TodoItem[] = [];
-    // @observable receiveData: JSON = [];
-
     @action FetchTodos(): TodoItem[] {
         provider.getInstance().get('/todo/').then((response: AxiosResponse) => {
-            this.todoList = response.data;
-            console.log(response.data.data[0]);
-            console.log(typeof response.data);
+            this.todoList = response.data.data;
+            console.log(this.todoList)
             // console.log(this.todoList[0].id);
         }).catch(() => { message.error("???") })
         return this.todoList;

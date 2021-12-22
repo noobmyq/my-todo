@@ -1,6 +1,6 @@
 '''
 Date: 2021-12-21 17:45:56
-LastEditTime: 2021-12-21 20:47:51
+LastEditTime: 2021-12-22 10:04:14
 FilePath: /new-simple-todo/my-todo/backend/mytodo/apis.py
 '''
 from typing import Any
