@@ -1,6 +1,6 @@
 '''
 Date: 2021-12-21 17:45:56
-LastEditTime: 2021-12-22 16:15:59
+LastEditTime: 2021-12-22 16:25:41
 FilePath: /new-simple-todo/my-todo/backend/mytodo/apis.py
 '''
 from typing import List
@@ -79,18 +79,17 @@ def get_todos(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
 
 
 @app.post("/todo/", tags=["todos"], response_model=schemas.Item)
-async def add_todo(item: schemas.ItemCreate, id: int, db: Session = Depends(get_db)):
+async def add_todo(item: schemas.ItemCreate, db: Session = Depends(get_db)):
     # todos.append(jsonable_encoder(todo))
     # return{
     #     "data": {"Todo added."}
     # }
     print(item)
-    return crud.create_item(db=db, item=item, id=id)
+    num = crud.get_items_num(db)
+    return crud.create_item(db=db, item=item, id=num)
 
 
 # clear
-
-
 @app.delete('/items/{item_id}', response_model=schemas.Item)
 def delete_item(item_id: int, db: Session = Depends(get_db)):
     db_item = crud.delete_item(db, item_id=item_id)
