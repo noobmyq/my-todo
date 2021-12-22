@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-12-21 15:55:14
- * @LastEditTime: 2021-12-22 20:29:05
+ * @LastEditTime: 2021-12-22 21:55:40
  * @FilePath: /new-simple-todo/my-todo/README.md
 -->
 # A todo-project..
@@ -27,7 +27,7 @@ please go to http://127.0.0.1:8000
 
 * please make sure your environment is correct
 * detailed requirement please refer to [here](https://github.com/joint-online-judge/simple-todo/blob/main/)
-
+---
 ### Dec.21:
 
 #### frontend
@@ -50,7 +50,7 @@ $ poetry add [dependency]
 #### problems:
 * ~~how to transfer the response data of axios into typescript type????????~~(use console.log to find out the problem!!)
 * tired..
-
+---
 ### Dec.22
 
 #### frontend
