@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 18:08:09
- * @LastEditTime: 2021-12-22 21:50:57
+ * @LastEditTime: 2021-12-23 16:27:57
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/App.tsx
  */
 import React, { Component, FormEvent, useDebugValue } from 'react';
@@ -33,7 +33,8 @@ import { useForm } from 'antd/es/form/Form';
         const newTodo: TodoItem = {
             id: todoContext.numofItems,
             // content: values.content
-            content: value.content
+            content: value.content,
+            status: 0
         }
         TodoContext.AddTodos(newTodo);
         // this.props.form.resetFields();
@@ -47,18 +48,18 @@ import { useForm } from 'antd/es/form/Form';
             const [form] = Form.useForm();
         }
         const todoData = TodoContext.todoList;
-        const itemDelete = (
-            <div
-                style={{
-                    textAlign: 'center',
-                    marginTop: 12,
-                    height: 32,
-                    lineHeight: '32px',
-                }}
-            >
-                <Button onClick={this.itemDelete}>delete</Button>
-            </div>
-        );
+        // const itemDelete = (
+        //     <div
+        //         style={{
+        //             textAlign: 'center',
+        //             marginTop: 12,
+        //             height: 32,
+        //             lineHeight: '32px',
+        //         }}
+        //     >
+        //         <Button onClick={this.itemDelete}>delete</Button>
+        //     </div>
+        // );
 
         // console.log(todoData)
         return (

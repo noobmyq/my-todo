@@ -1,6 +1,6 @@
 '''
 Date: 2021-12-22 12:51:45
-LastEditTime: 2021-12-22 22:23:50
+LastEditTime: 2021-12-23 16:07:43
 FilePath: /new-simple-todo/my-todo/backend/mytodo/models.py
 '''
 from enum import unique
@@ -16,5 +16,5 @@ class Item(Base):
     __tablename__ = "todo"
 
     id = Column(Integer, primary_key=True, index=True)
-    # status = Column(Integer, index=True)
     content = Column(String, index=True)
+    status = Column(Integer, index=True)

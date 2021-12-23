@@ -1,13 +1,13 @@
 '''
 Date: 2021-12-20 15:28:20
-LastEditTime: 2021-12-22 14:45:39
+LastEditTime: 2021-12-23 16:15:42
 FilePath: /new-simple-todo/my-todo/backend/mytodo/database.py
 '''
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
+SQLALCHEMY_DATABASE_URL = "sqlite:///./todo.db"
 # SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
 
 engine = create_engine(
