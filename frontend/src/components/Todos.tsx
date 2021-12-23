@@ -1,15 +1,12 @@
 /*
  * @Date: 2021-12-21 20:57:47
- * @LastEditTime: 2021-12-23 20:45:47
+ * @LastEditTime: 2021-12-23 21:06:28
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/Todos.tsx
  */
 import { action, observable } from 'mobx'
-import React, { useEffect, useState } from "react";
-import { Stack } from "@chakra-ui/core";
 import { TodoItem } from "../constant/interface";
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
-import { isAsExpression } from "typescript";
-import { observer } from 'mobx-react-lite';
+
 import { message } from 'antd';
 
 class Provider {

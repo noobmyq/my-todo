@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 18:08:09
- * @LastEditTime: 2021-12-23 20:55:12
+ * @LastEditTime: 2021-12-23 21:08:12
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/App.tsx
  */
 import React, { Component, FormEvent, useState } from 'react';
@@ -33,7 +33,7 @@ const { SubMenu } = Menu;
             // content: values.content
             content: value.content,
             status: 0,
-            expire_date: ""
+            expire_date: value.expire_date
         }
         todoContext.AddTodos(newTodo);
         // this.props.form.resetFields();
