@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 18:08:09
- * @LastEditTime: 2021-12-23 16:27:57
+ * @LastEditTime: 2021-12-23 17:16:17
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/App.tsx
  */
 import React, { Component, FormEvent, useDebugValue } from 'react';
@@ -40,9 +40,12 @@ import { useForm } from 'antd/es/form/Form';
         // this.props.form.resetFields();
         // });
     }
-    itemDelete = () => {
-
-    }
+    showStatus(item: TodoItem): string {
+        if (item.status == 0) {
+            return "todo";
+        } else
+            return "done";
+    };
     render() {
         const Demo = () => {
             const [form] = Form.useForm();
@@ -61,7 +64,7 @@ import { useForm } from 'antd/es/form/Form';
         //     </div>
         // );
 
-        // console.log(todoData)
+        console.log(todoData)
         return (
             <Layout>
                 <Header />
@@ -116,7 +119,7 @@ import { useForm } from 'antd/es/form/Form';
                                         修改
                                     </Button>,
                                     <Button onClick={() => {
-                                        TodoContext.RemoveTodos(item)
+                                        TodoContext.MarkasDone(item)
                                     }}>
                                         完成
                                     </Button>
@@ -124,7 +127,9 @@ import { useForm } from 'antd/es/form/Form';
                                     <List.Item.Meta
                                         title={<div>{item.id}</div>}
                                     />
-                                    <Typography.Text mark>[todo] </Typography.Text>{item.content}
+
+                                    <Typography.Text mark>[{this.showStatus(item)}] </Typography.Text>{item.content}
+
                                 </List.Item>
                             }
                         />
