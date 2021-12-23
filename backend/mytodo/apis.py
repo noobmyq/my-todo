@@ -1,27 +1,23 @@
 '''
 Date: 2021-12-21 17:45:56
-LastEditTime: 2021-12-23 17:12:16
+LastEditTime: 2021-12-23 19:46:04
 FilePath: /new-simple-todo/my-todo/backend/mytodo/apis.py
 '''
-from typing import List
+from sqlmodel import Field, Session, select
+from fastapi.middleware.cors import CORSMiddleware
+from .database import create_db_and_tables, engine
+from typing import List, Optional
 
 from fastapi import Depends, FastAPI, HTTPException
-from sqlalchemy import schema
-from sqlalchemy.orm import Session
-from . import crud, models, schemas
-from .database import SessionLocal, engine
-from fastapi.middleware.cors import CORSMiddleware
-models.Base.metadata.create_all(bind=engine)
+from . import models
+
 
 app = FastAPI()
 
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+@app.on_event("startup")
+def on_startup():
+    create_db_and_tables()
 
 
 # add origins
@@ -70,48 +66,58 @@ app.add_middleware(
 # get todo items
 
 
-@app.get("/todo/", tags=["todo"], response_model=List[schemas.Item])
-def get_todos(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    items = crud.get_items(db, skip=skip, limit=limit)
-    return items
+@app.get("/todo/", tags=["todo"], response_model=List[models.Item])
+def get_todos(limit: int = 100):
+    with Session(engine) as session:
+        items = session.query(models.Item).limit(limit).all()
+        return items
 
-
-# @app.post("/clear/", tags=["clear"])
-# async def clear_items():
-#     todos.clear()
-#     return{"data": "Clear"}
 
 # post todo items
 
 
-@app.post("/todo/", tags=["todos"], response_model=schemas.Item)
-async def add_todo(item: schemas.ItemCreate, db: Session = Depends(get_db)):
-    # todos.append(jsonable_encoder(todo))
-    # return{
-    #     "data": {"Todo added."}
-    # }
-    num = crud.get_current_id(db)
-    return crud.create_item(db=db, item=item, id=num)
+@app.post("/todo/", tags=["todos"], response_model=models.Item)
+async def add_todo(item: models.ItemCreate):
+    with Session(engine) as session:
+        db_item = models.Item.from_orm(item)
+        session.add(db_item)
+        session.commit()
+        session.refresh(db_item)
+        return db_item
 
 
 # mark as done
-@app.post("/todo/{item_id}/done", tags=["Done"])
-async def mark_as_done(item_id: int, db: Session = Depends(get_db)):
-    db_item_done = crud.add_done_item(db, item_id=item_id)
-    return db_item_done
+@app.patch("/todo/{item_id}/done", tags=["Done"])
+async def mark_as_done(item_id: int):
+    with Session(engine) as session:
+        db_item = session.get(models.Item, item_id)
+        if not db_item:
+            raise HTTPException(status_code=404, detail="Item not found")
+        db_item.status = 1
+        session.add(db_item)
+        session.commit()
+        session.refresh(db_item)
+        return db_item
 
 
-# clear
-@app.delete('/items/clear')
-def clear_all(db: Session = Depends(get_db)):
-    print("a")
-    return {"A": str(crud.clear_item(db))}
+@app.delete("/clear/", tags=["clear"])
+async def clear_items():
+    with Session(engine) as session:
+        while session.query(models.Item).first() != None:
+            firstItem = session.query(models.Item).first()
+            session.delete(firstItem)
+            print(firstItem)
+            session.commit()
+        return{"data": "Clear"}
 
 
 # delete
-@app.delete('/items/{item_id}', response_model=schemas.Item)
-def delete_item(item_id: int, db: Session = Depends(get_db)):
-    db_item = crud.delete_item(db, item_id=item_id)
-    if db_item is None:
-        raise HTTPException(status_code=404, detail="User not found")
-    return db_item
+@app.delete('/items/{item_id}', response_model=models.Item)
+def delete_item(item_id: int):
+    with Session(engine) as session:
+        db_item = session.get(models.Item, item_id)
+        if db_item is None:
+            raise HTTPException(status_code=404, detail="User not found")
+        session.delete(db_item)
+        session.commit()
+        return db_item
