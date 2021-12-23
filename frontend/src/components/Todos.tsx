@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 20:57:47
- * @LastEditTime: 2021-12-23 17:19:46
+ * @LastEditTime: 2021-12-23 19:49:08
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/Todos.tsx
  */
 import { action, observable } from 'mobx'
@@ -23,7 +23,7 @@ class TodoContext {
     @observable numofItems: number = 0;
     @action MarkasDone(item: TodoItem): void {
         const id: Number = item.id;
-        provider.getInstance().post(`/todo/${id}/done`, id)
+        provider.getInstance().patch(`/todo/${id}/done`, id)
             .then(() => {
                 this.FetchTodos();
             }).catch(() => { message.error("更新失败") })
