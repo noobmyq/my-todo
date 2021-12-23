@@ -6425,10 +6425,10 @@
   dependencies:
     "mobx-react-lite" "^3.2.0"
 
-"mobx@^6.1.0", "mobx@^6.3.9":
-  "integrity" "sha512-u9vhETRPgx6s+MD2NhGaOQJMJa/qszflwFxKryCXotERWY77ocdrRQUp7Jwt1urjefUXNj3fQbTnKrCV+kBaXw=="
-  "resolved" "https://registry.npmjs.org/mobx/-/mobx-6.3.9.tgz"
-  "version" "6.3.9"
+"mobx@^6.1.0", "mobx@^6.3.10":
+  "integrity" "sha512-lfuIN5TGXBNy/5s3ggr1L+IbD+LvfZVlj5q1ZuqyV9AfMtunYQvE8G0WfewS9tgIR3I1q8HJEEbcAOsxEgLwRw=="
+  "resolved" "https://registry.npmjs.org/mobx/-/mobx-6.3.10.tgz"
+  "version" "6.3.10"
 
 "moment@^2.24.0", "moment@^2.25.3":
   "integrity" "sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ=="

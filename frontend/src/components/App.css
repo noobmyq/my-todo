@@ -1,4 +1,6 @@
-
+.site-layout-background {
+    background: rgb(255, 255, 255);
+}
 
 .App {
   text-align: center;
