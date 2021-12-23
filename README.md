@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-12-21 15:55:14
- * @LastEditTime: 2021-12-23 16:07:02
+ * @LastEditTime: 2021-12-23 18:56:30
  * @FilePath: /new-simple-todo/my-todo/README.md
 -->
 # A todo-project..
@@ -74,8 +74,9 @@ Type '{ children: Element; layout: "inline"; onSubmit: () => void; }' is not ass
 ### Dec.23
 
 #### frontend
-
+* add sider but not seems to working
 #### backend
 * extending current models, add status
+* try rebasing on sqlmodel
 
 
