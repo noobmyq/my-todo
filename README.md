@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-12-21 15:55:14
- * @LastEditTime: 2021-12-23 19:50:36
+ * @LastEditTime: 2021-12-23 21:10:24
  * @FilePath: /new-simple-todo/my-todo/README.md
 -->
 # A todo-project..
@@ -69,7 +69,7 @@ Type '{ children: Element; layout: "inline"; onSubmit: () => void; }' is not ass
 ```
 * cannot lively update the frontend
 * ugly frontend UI
-* not able to rebase the model on sqlmodel yet(necessary?)
+* ~~not able to rebase the model on sqlmodel yet(necessary?)~~
 ---
 ### Dec.23
 
