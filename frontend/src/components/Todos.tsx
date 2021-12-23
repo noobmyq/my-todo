@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 20:57:47
- * @LastEditTime: 2021-12-23 19:49:08
+ * @LastEditTime: 2021-12-23 20:45:47
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/Todos.tsx
  */
 import { action, observable } from 'mobx'
@@ -21,12 +21,37 @@ const provider = new Provider();
 class TodoContext {
     @observable todoList: TodoItem[] = [];
     @observable numofItems: number = 0;
+    @observable detailVisable: boolean = false;
+    @observable editingItem: TodoItem | any = 0;
+
+    @action closeDetails(): void {
+        this.detailVisable = false;
+        this.editingItem = 0
+    }
+    @action showDetails(item: TodoItem): void {
+        this.detailVisable = true;
+        this.editingItem = item
+        console.log(this.detailVisable)
+    }
     @action MarkasDone(item: TodoItem): void {
         const id: Number = item.id;
         provider.getInstance().patch(`/todo/${id}/done`, id)
             .then(() => {
                 this.FetchTodos();
+            }).catch(() => { message.error("完成失败") })
+    }
+    @action UpdateTodos(item: TodoItem): void {
+        console.log(item);
+        const id: Number = item.id;
+        const update_item = {
+            content: item.content,
+            status: item.status
+        }
+        provider.getInstance().patch('/items/' + id.toString(), update_item)
+            .then(() => {
+                this.FetchTodos();
             }).catch(() => { message.error("更新失败") })
+
     }
     @action RemoveTodos(item: TodoItem): void {
         console.log(item);
@@ -38,8 +63,7 @@ class TodoContext {
             }).catch(() => { message.error("删除失败") })
     }
     @action ClearTodos(): void {
-
-        provider.getInstance().delete('/items/clear')
+        provider.getInstance().delete('/clear')
             .then(() => {
                 this.FetchTodos();
                 this.numofItems = 0;

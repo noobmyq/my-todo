@@ -1,16 +1,15 @@
 /*
  * @Date: 2021-12-21 18:08:09
- * @LastEditTime: 2021-12-23 19:57:51
+ * @LastEditTime: 2021-12-23 20:55:12
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/App.tsx
  */
-import React, { Component, FormEvent, useDebugValue } from 'react';
+import React, { Component, FormEvent, useState } from 'react';
 import './App.css';
 // import Header from "./Header"
 import { observer } from "mobx-react";
 import { Layout, List, Row, Form, Button, Divider, Drawer, Input, Typography, Menu } from 'antd';
-import TodoContext from './Todos';
-import { TodoItem } from '../constant/interface';
 import todoContext from './Todos';
+import { TodoItem } from '../constant/interface';
 // import { Content } from 'antd/lib/layout/layout';
 const { Header, Content, Sider } = Layout
 const { SubMenu } = Menu;
@@ -33,9 +32,10 @@ const { SubMenu } = Menu;
             id: todoContext.numofItems,
             // content: values.content
             content: value.content,
-            status: 0
+            status: 0,
+            expire_date: ""
         }
-        TodoContext.AddTodos(newTodo);
+        todoContext.AddTodos(newTodo);
         // this.props.form.resetFields();
         // });
     }
@@ -49,24 +49,8 @@ const { SubMenu } = Menu;
         return allTodo.filter((item, index, array) => { return item.status == 0; });
     }
     render() {
-        const Demo = () => {
-            const [form] = Form.useForm();
-        }
-        const wholeData = TodoContext.todoList;
+        const wholeData = todoContext.todoList;
         const todoData = this.filterTodo(wholeData);
-        // const itemDelete = (
-        //     <div
-        //         style={{
-        //             textAlign: 'center',
-        //             marginTop: 12,
-        //             height: 32,
-        //             lineHeight: '32px',
-        //         }}
-        //     >
-        //         <Button onClick={this.itemDelete}>delete</Button>
-        //     </div>
-        // );
-
         console.log(todoData)
         return (
             <Layout>
@@ -128,47 +112,44 @@ const { SubMenu } = Menu;
                                 margin: 0,
                                 minHeight: 280,
                             }}>
-                            <Row>
-                                <List
-                                    itemLayout="horizontal"
-                                    dataSource={todoData}
-                                    renderItem={item =>
-                                        <List.Item actions={[
-                                            <Button onClick={() => {
-                                                TodoContext.RemoveTodos(item)
-                                            }}>
-                                                删除
-                                            </Button>,
-                                            <Button onClick={() => {
-                                                TodoContext.RemoveTodos(item)
-                                            }}>
-                                                修改
-                                            </Button>,
-                                            <Button onClick={() => {
-                                                TodoContext.MarkasDone(item)
-                                            }}>
-                                                完成
-                                            </Button>
-                                        ]}>
-                                            <List.Item.Meta
-                                                title={<div>{item.id}</div>}
-                                            />
+                            <List
+                                itemLayout="horizontal"
+                                dataSource={todoData}
+                                renderItem={item =>
+                                    <List.Item actions={[
+                                        <Button onClick={() => {
+                                            todoContext.RemoveTodos(item)
+                                        }}>
+                                            删除
+                                        </Button>,
+                                        <Button onClick={() => {
+                                            todoContext.showDetails(item)
+                                        }}>
+                                            修改
+                                        </Button>,
+                                        <Button onClick={() => {
+                                            todoContext.MarkasDone(item)
+                                        }}>
+                                            完成
+                                        </Button>
+                                    ]}>
+                                        <List.Item.Meta
+                                            title={<div>{item.id}</div>}
+                                        />
 
-                                            <Typography.Text mark>[{this.showStatus(item)}] </Typography.Text>{item.content}
+                                        <Typography.Text mark>[{this.showStatus(item)}] </Typography.Text>{item.content}
 
-                                        </List.Item>
-                                    }
-                                />
-                                <Divider orientation="left">Small Size</Divider>
-                                <Drawer
-                                    title="修改任务信息"
-                                    width={500}
-                                    bodyStyle={{ paddingBottom: 80 }}
-                                    destroyOnClose={true}
-                                >
-                                    abc
-                                </Drawer>
-                            </Row>
+                                    </List.Item>
+                                }
+                            />
+                            <Drawer
+                                title="update-item"
+                                placement='right'
+                                onClose={todoContext.closeDetails}
+                                visible={todoContext.detailVisable}
+                            >
+                                abc
+                            </Drawer>
                         </Content>
                     </Layout>
                 </Layout>
