@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 18:08:09
- * @LastEditTime: 2021-12-23 17:16:17
+ * @LastEditTime: 2021-12-23 17:24:43
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/App.tsx
  */
 import React, { Component, FormEvent, useDebugValue } from 'react';
@@ -46,11 +46,15 @@ import { useForm } from 'antd/es/form/Form';
         } else
             return "done";
     };
+    filterTodo(allTodo: TodoItem[]): TodoItem[] {
+        return allTodo.filter((item, index, array) => { return item.status == 0; });
+    }
     render() {
         const Demo = () => {
             const [form] = Form.useForm();
         }
-        const todoData = TodoContext.todoList;
+        const wholeData = TodoContext.todoList;
+        const todoData = this.filterTodo(wholeData);
         // const itemDelete = (
         //     <div
         //         style={{
@@ -64,7 +68,7 @@ import { useForm } from 'antd/es/form/Form';
         //     </div>
         // );
 
-        console.log(todoData)
+        // console.log(todoData)
         return (
             <Layout>
                 <Header />
