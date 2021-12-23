@@ -1,6 +1,6 @@
 '''
 Date: 2021-12-21 17:45:56
-LastEditTime: 2021-12-23 19:46:04
+LastEditTime: 2021-12-23 20:06:13
 FilePath: /new-simple-todo/my-todo/backend/mytodo/apis.py
 '''
 from sqlmodel import Field, Session, select
@@ -98,6 +98,25 @@ async def mark_as_done(item_id: int):
         session.commit()
         session.refresh(db_item)
         return db_item
+
+# update
+
+
+@app.patch("/todo/{item_id}", tags=["update"])
+async def update_item(item_id: int, item: models.ItemUpdate):
+    with Session(engine) as session:
+        db_item = session.get(models.Item, item_id)
+        if not db_item:
+            raise HTTPException(status_code=404, detail="Item not found")
+        db_item.status = item.status
+        db_item.content = item.content
+        session.add(db_item)
+        session.commit()
+        session.refresh(db_item)
+        return db_item
+
+
+# clear all
 
 
 @app.delete("/clear/", tags=["clear"])

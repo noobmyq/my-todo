@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 18:08:09
- * @LastEditTime: 2021-12-23 19:49:26
+ * @LastEditTime: 2021-12-23 19:57:51
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/App.tsx
  */
 import React, { Component, FormEvent, useDebugValue } from 'react';
@@ -67,7 +67,7 @@ const { SubMenu } = Menu;
         //     </div>
         // );
 
-        // console.log(todoData)
+        console.log(todoData)
         return (
             <Layout>
                 <Layout>
@@ -133,7 +133,6 @@ const { SubMenu } = Menu;
                                     itemLayout="horizontal"
                                     dataSource={todoData}
                                     renderItem={item =>
-
                                         <List.Item actions={[
                                             <Button onClick={() => {
                                                 TodoContext.RemoveTodos(item)
