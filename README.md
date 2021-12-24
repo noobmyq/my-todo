@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-12-21 15:55:14
- * @LastEditTime: 2021-12-23 21:10:24
+ * @LastEditTime: 2021-12-24 14:07:23
  * @FilePath: /new-simple-todo/my-todo/README.md
 -->
 # A todo-project..
@@ -49,7 +49,7 @@ $ poetry add [dependency]
 
 #### problems:
 * ~~how to transfer the response data of axios into typescript type????????~~(use console.log to find out the problem!!)
-* tired..
+* ~~tired..~~
 ---
 ### Dec.22
 
@@ -60,6 +60,7 @@ $ poetry add [dependency]
 * try using mysqlmodel
 ```
 $ poetry add sqlalchemy
+$ poetry add sqlmodel
 ```
 * sqlmodel can connect with backend and frontend
 #### problems:
@@ -79,4 +80,14 @@ Type '{ children: Element; layout: "inline"; onSubmit: () => void; }' is not ass
 * extending current models, add status
 * try rebasing on sqlmodel
 * sqlmodel is easier than creating a model myself.........read the wrong doc before
+
+---
+### Dec.24
+
+#### frontend
+* redraw the UI
+
+#### backend
+* try to add expire_date
+
 
