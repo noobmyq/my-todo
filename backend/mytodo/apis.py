@@ -1,6 +1,6 @@
 '''
 Date: 2021-12-21 17:45:56
-LastEditTime: 2021-12-23 20:06:13
+LastEditTime: 2021-12-24 16:21:42
 FilePath: /new-simple-todo/my-todo/backend/mytodo/apis.py
 '''
 from sqlmodel import Field, Session, select
@@ -110,6 +110,7 @@ async def update_item(item_id: int, item: models.ItemUpdate):
             raise HTTPException(status_code=404, detail="Item not found")
         db_item.status = item.status
         db_item.content = item.content
+        db_item.expire_date = item.expire_date
         session.add(db_item)
         session.commit()
         session.refresh(db_item)

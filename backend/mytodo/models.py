@@ -25,3 +25,4 @@ class Item(ItemBase, table=True):
 class ItemUpdate(SQLModel):
     content: str
     status: int
+    expire_date: str
