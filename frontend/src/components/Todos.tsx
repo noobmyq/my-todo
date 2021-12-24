@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 20:57:47
- * @LastEditTime: 2021-12-23 21:06:28
+ * @LastEditTime: 2021-12-24 15:01:43
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/Todos.tsx
  */
 import { action, observable } from 'mobx'
@@ -22,8 +22,9 @@ class TodoContext {
     @observable editingItem: TodoItem | any = 0;
 
     @action closeDetails(): void {
+        console.log(this.detailVisable)
         this.detailVisable = false;
-        this.editingItem = 0
+        this.editingItem = 0;
     }
     @action showDetails(item: TodoItem): void {
         this.detailVisable = true;
