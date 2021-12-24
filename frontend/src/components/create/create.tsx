@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-24 14:46:24
- * @LastEditTime: 2021-12-24 16:09:19
+ * @LastEditTime: 2021-12-24 16:33:11
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/create/create.tsx
  */
 import moment, { Moment } from 'moment'
@@ -42,7 +42,7 @@ class CreateTodos extends Component<any, any>{
         // console.log(this.dateStr)
         const newTodo: TodoItem = {
             id: todoContext.numofItems,
-            // content: values.content
+            title: value.title,
             content: value.content,
             status: 0,
             expire_date: dateStr
@@ -59,35 +59,43 @@ class CreateTodos extends Component<any, any>{
                 minHeight: 80,
             }}>
                 <Form
-                    layout="inline"
+                    layout="horizontal"
                     onFinish={this.submit}
                     onReset={this.reset}
                     name="basic"
-                    labelCol={{ span: 8 }}
+                    labelCol={{ span: 0 }}
                     wrapperCol={{ span: 16 }}
                     initialValues={{ remember: true }}
                     autoComplete="off"
                 >
                     <Form.Item
-                        label="Content"
+                        label="标题"
+                        name="title"
+                        rules={[{ required: true, message: "输入标题" }]}
+                    >
+                        <Input style={{ width: 200 }} placeholder='输入标题' />
+                    </Form.Item>
+                    <Form.Item
+                        label="内容"
                         name="content"
                         rules={[{ required: true, message: '输入todo内容' }]}
                     >
-                        <Input />
+                        <Input style={{ width: 600 }} placeholder='输入todo内容' />
                     </Form.Item>
+
                     <Form.Item
-                        label="Expire_date"
+                        label="到期时间"
                         name="expire_date"
                         rules={[{ required: true, message: '输入到期时间' }]}
                     >
                         <DatePicker showTime onOk={this.onOk} placeholder="选择到期时间" disabledDate={disabledDate} />
                     </Form.Item>
-                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                    <Form.Item wrapperCol={{ offset: 0, span: 16 }}>
                         <Button type="primary" htmlType="submit">
                             Submit
                         </Button>
                     </Form.Item>
-                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                    <Form.Item wrapperCol={{ offset: 0, span: 16 }} >
                         <Button type="primary" htmlType="reset">
                             Clear
                         </Button>

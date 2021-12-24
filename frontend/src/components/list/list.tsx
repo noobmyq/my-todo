@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-24 15:03:12
- * @LastEditTime: 2021-12-24 16:24:35
+ * @LastEditTime: 2021-12-24 16:34:39
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/list/list.tsx
  */
 import { Layout, List, Button, Typography, Drawer } from 'antd';
@@ -62,7 +62,7 @@ class TodoList extends Component<any, any>{
                         </Button>
                     ]}>
                         <List.Item.Meta
-                            title={<div>{item.id}</div>}
+                            title={<div>{item.title}</div>}
                             description={<div>到期时间:  {this.getTime(item)}</div>}
                         />
                         <Typography.Text mark>[{this.showStatus(item)}] </Typography.Text>{item.content}
