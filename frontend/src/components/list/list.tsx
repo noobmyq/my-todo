@@ -1,12 +1,13 @@
 /*
  * @Date: 2021-12-24 15:03:12
- * @LastEditTime: 2021-12-24 17:17:39
+ * @LastEditTime: 2021-12-24 17:35:35
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/list/list.tsx
  */
 import { Layout, List, Button, Typography, Drawer } from 'antd';
 import todoContext from '../Todos';
 import { TodoItem } from '../../constant/interface';
 import { Component } from 'react'
+import { getPriority } from 'os';
 const { Header, Content, Sider } = Layout
 
 class TodoList extends Component<any, any>{
@@ -29,6 +30,22 @@ class TodoList extends Component<any, any>{
         const dateStrShow = date.toLocaleString();
         console.log(dateStrShow);
         return dateStrShow;
+    }
+    getPriority(item: TodoItem): string {
+        const priority = item.priority;
+        let priorityStr: string = "";
+        switch (priority) {
+            case 1:
+                priorityStr = "优先级1";
+                break;
+            case 2:
+                priorityStr = "优先级2";
+                break;
+            case 3:
+                priorityStr = "优先级3";
+                break;
+        }
+        return priorityStr
     }
     editButtonDisabled(item: TodoItem) {
         if (item.status != 1) return false;
@@ -71,7 +88,7 @@ class TodoList extends Component<any, any>{
                     ]}>
                         <List.Item.Meta
                             title={<div>标题： {item.title}</div>}
-                            description={<div>到期时间:  {this.getTime(item)}</div>}
+                            description={<div>到期时间:  {this.getTime(item)} <div> 优先级: {this.getPriority(item)}</div></div>}
                         />
                         <Typography.Text mark style={{ fontSize: 20 }}>({this.showStatus(item)}) </Typography.Text>  {item.content}
 
