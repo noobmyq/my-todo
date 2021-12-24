@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 20:57:47
- * @LastEditTime: 2021-12-24 15:01:43
+ * @LastEditTime: 2021-12-24 16:18:16
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/Todos.tsx
  */
 import { action, observable } from 'mobx'
@@ -20,6 +20,7 @@ class TodoContext {
     @observable numofItems: number = 0;
     @observable detailVisable: boolean = false;
     @observable editingItem: TodoItem | any = 0;
+    @observable showType: number = 0;
 
     @action closeDetails(): void {
         console.log(this.detailVisable)
@@ -68,9 +69,7 @@ class TodoContext {
             }).catch(() => { message.error("清空失败") })
     }
     @action AddTodos(item: TodoItem): void {
-        console.log(item);
         const json = JSON.parse(JSON.stringify(item));
-        console.log(json);
         provider.getInstance().post('/todo/', json)
             .then(() => {
                 this.FetchTodos();

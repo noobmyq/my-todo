@@ -1,17 +1,16 @@
 /*
  * @Date: 2021-12-21 18:08:09
- * @LastEditTime: 2021-12-24 15:10:45
+ * @LastEditTime: 2021-12-24 16:18:32
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/App.tsx
  */
-import { Component, FormEvent } from 'react';
+import { Component } from 'react';
 import './App.css';
 // import Header from "./Header"
 import { observer } from "mobx-react";
-import { Layout, List, Row, Form, Button, Drawer, Input, Typography, Menu, Space, DatePicker } from 'antd';
+import { Layout } from 'antd';
 import todoContext from './Todos';
 import { TodoItem } from '../constant/interface';
 import Category from './sider/category'
-import TodoCreate from './create/create';
 import CreateTodos from './create/create';
 import TodoList from './list/list';
 const { Header, Content, Sider } = Layout
@@ -22,14 +21,14 @@ const { Header, Content, Sider } = Layout
         this.state = { sortBy: 'date' }
     };
     filterTodo(allTodo: TodoItem[]): TodoItem[] {
-        return allTodo.filter((item, index, array) => { return item.status == 0; });
+        return allTodo.filter((item, index, array) => { return item.status == todoContext.showType; });
     }
 
     render() {
         const wholeData = todoContext.todoList;
         const todoData = this.filterTodo(wholeData);
-        console.log(todoData)
-        // console.log(1)
+        // console.log(wholeData)
+        // console.log(todoContext.showType)
         return (
             <Layout>
                 <Sider width={200} className="site-layout-background">

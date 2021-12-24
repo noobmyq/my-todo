@@ -1,6 +1,6 @@
 '''
 Date: 2021-12-22 12:51:45
-LastEditTime: 2021-12-23 20:02:46
+LastEditTime: 2021-12-24 16:20:49
 FilePath: /new-simple-todo/my-todo/backend/mytodo/models.py
 '''
 from typing import Optional
@@ -11,6 +11,7 @@ from sqlmodel import SQLModel, Field
 class ItemBase(SQLModel):
     content: str
     status: int
+    expire_date: str
 
 
 class ItemCreate(ItemBase):

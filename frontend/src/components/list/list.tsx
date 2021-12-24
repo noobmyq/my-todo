@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-24 15:03:12
- * @LastEditTime: 2021-12-24 15:08:37
+ * @LastEditTime: 2021-12-24 16:16:56
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/list/list.tsx
  */
 import { Layout, List, Button, Typography, Drawer } from 'antd';
@@ -20,7 +20,15 @@ class TodoList extends Component<any, any>{
             return "done";
     };
     filterTodo(allTodo: TodoItem[]): TodoItem[] {
-        return allTodo.filter((item, index, array) => { return item.status == 0; });
+        return allTodo.filter((item, index, array) => { return item.status == todoContext.showType; });
+    }
+    getTime(item: TodoItem): string {
+        const dateStr = item.expire_date;
+        console.log(dateStr);
+        const date = new Date(Date.parse(dateStr));
+        const dateStrShow = date.toLocaleDateString();
+        console.log(dateStrShow);
+        return dateStrShow;
     }
     render() {
 
@@ -55,8 +63,8 @@ class TodoList extends Component<any, any>{
                     ]}>
                         <List.Item.Meta
                             title={<div>{item.id}</div>}
+                            description={this.getTime(item)}
                         />
-
                         <Typography.Text mark>[{this.showStatus(item)}] </Typography.Text>{item.content}
 
                     </List.Item>
