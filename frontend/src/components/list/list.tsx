@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-24 15:03:12
- * @LastEditTime: 2021-12-24 16:34:39
+ * @LastEditTime: 2021-12-24 16:51:55
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/list/list.tsx
  */
 import { Layout, List, Button, Typography, Drawer } from 'antd';
@@ -15,9 +15,9 @@ class TodoList extends Component<any, any>{
     }
     showStatus(item: TodoItem): string {
         if (item.status == 0) {
-            return "todo";
+            return "Todo";
         } else
-            return "done";
+            return "Done";
     };
     filterTodo(allTodo: TodoItem[]): TodoItem[] {
         return allTodo.filter((item, index, array) => { return item.status == todoContext.showType; });
@@ -29,6 +29,14 @@ class TodoList extends Component<any, any>{
         const dateStrShow = date.toLocaleString();
         console.log(dateStrShow);
         return dateStrShow;
+    }
+    editButtonDisabled(item: TodoItem) {
+        if (item.status != 1) return false;
+        return true;
+    }
+    doneButtonDiabled(item: TodoItem) {
+        if (item.status == 1) return true;
+        return false;
     }
     render() {
 
@@ -50,22 +58,22 @@ class TodoList extends Component<any, any>{
                         }}>
                             删除
                         </Button>,
-                        <Button onClick={() => {
+                        <Button disabled={this.editButtonDisabled(item)} onClick={() => {
                             todoContext.showDetails(item)
                         }}>
                             修改
                         </Button>,
-                        <Button onClick={() => {
+                        <Button disabled={this.doneButtonDiabled(item)} onClick={() => {
                             todoContext.MarkasDone(item)
                         }}>
                             完成
                         </Button>
                     ]}>
                         <List.Item.Meta
-                            title={<div>{item.title}</div>}
+                            title={<div>标题： {item.title}</div>}
                             description={<div>到期时间:  {this.getTime(item)}</div>}
                         />
-                        <Typography.Text mark>[{this.showStatus(item)}] </Typography.Text>{item.content}
+                        <Typography.Text mark style={{ fontSize: 20 }}>({this.showStatus(item)}) </Typography.Text>  {item.content}
 
                     </List.Item>
                 }

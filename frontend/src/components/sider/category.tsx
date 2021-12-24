@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-24 14:43:19
- * @LastEditTime: 2021-12-24 15:25:03
+ * @LastEditTime: 2021-12-24 16:52:33
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/sider/category.tsx
  */
 import { Menu } from 'antd'
@@ -15,7 +15,7 @@ const Category: React.FC = () => {
     return (<Menu
         mode="inline"
         defaultOpenKeys={['sub1']}
-        defaultSelectedKeys={['0']}
+        defaultSelectedKeys={[todoContext.showType.toString()]}
         style={{ height: '100%', borderRight: 0 }}
         onClick={handleClick}
     >

@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 18:08:09
- * @LastEditTime: 2021-12-24 16:36:23
+ * @LastEditTime: 2021-12-24 16:52:43
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/App.tsx
  */
 import { Component } from 'react';
@@ -28,7 +28,7 @@ const { Header, Content, Sider } = Layout
         const wholeData = todoContext.todoList;
         const todoData = this.filterTodo(wholeData);
         console.log(wholeData)
-        // console.log(todoContext.showType)
+        console.log(todoContext.showType)
         return (
             <Layout>
                 <Sider width={200} className="site-layout-background">
