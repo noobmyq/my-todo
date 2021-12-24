@@ -1,6 +1,6 @@
 '''
 Date: 2021-12-21 17:45:56
-LastEditTime: 2021-12-24 16:35:23
+LastEditTime: 2021-12-24 17:37:14
 FilePath: /new-simple-todo/my-todo/backend/mytodo/apis.py
 '''
 from sqlmodel import Field, Session, select
@@ -112,6 +112,7 @@ async def update_item(item_id: int, item: models.ItemUpdate):
         db_item.content = item.content
         db_item.expire_date = item.expire_date
         db_item.title = item.title
+        db_item.priority = item.priority
         session.add(db_item)
         session.commit()
         session.refresh(db_item)
