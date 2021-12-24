@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-12-21 15:55:14
- * @LastEditTime: 2021-12-24 14:07:23
+ * @LastEditTime: 2021-12-24 14:40:32
  * @FilePath: /new-simple-todo/my-todo/README.md
 -->
 # A todo-project..
@@ -85,7 +85,7 @@ Type '{ children: Element; layout: "inline"; onSubmit: () => void; }' is not ass
 ### Dec.24
 
 #### frontend
-* redraw the UI
+* redraw the UI(Just add default antd.css and all is done..F**K)
 
 #### backend
 * try to add expire_date
