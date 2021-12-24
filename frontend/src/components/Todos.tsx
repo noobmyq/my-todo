@@ -1,13 +1,14 @@
 /*
  * @Date: 2021-12-21 20:57:47
- * @LastEditTime: 2021-12-24 19:45:19
+ * @LastEditTime: 2021-12-24 22:08:17
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/Todos.tsx
  */
-import { action, observable } from 'mobx'
+import { action, observable, computed } from 'mobx'
 import { TodoItem } from "../constant/interface";
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
-
 import { message } from 'antd';
+import { observer } from 'mobx-react';
+import React from 'react'
 
 class Provider {
     getInstance(): AxiosInstance {
@@ -83,12 +84,11 @@ class TodoContext {
         provider.getInstance().get('/todo/').
             then((response: AxiosResponse) => {
                 this.todoList = response.data;
-                console.log(response.data)
+                console.log(this.todoList)
             }).catch(() => { message.error("???") })
     }
     @action ShowTodos(): TodoItem[] {
         this.FetchTodos();
-        console.log(this.todoList)
         return this.todoList;
     }
 }

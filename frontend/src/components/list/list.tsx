@@ -1,18 +1,26 @@
 /*
  * @Date: 2021-12-24 15:03:12
- * @LastEditTime: 2021-12-24 19:43:57
+ * @LastEditTime: 2021-12-24 22:09:25
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/list/list.tsx
  */
 import { Layout, List, Button, Typography, Drawer } from 'antd';
 import todoContext from '../Todos';
 import { TodoItem } from '../../constant/interface';
 import { Component } from 'react'
-import { getPriority } from 'os';
+import { observer } from "mobx-react";
+import { observable } from 'mobx';
 const { Header, Content, Sider } = Layout
 
-class TodoList extends Component<any, any>{
+@observer class TodoList extends Component<any, { time: string }> {
     constructor(props: any) {
         super(props);
+        this.state = { time: new Date().toLocaleTimeString() }
+    }
+    // // use to refresh
+    componentDidMount() {
+        setInterval(() => {
+            this.setState({ time: new Date().toLocaleTimeString() })
+        }, 1000);
     }
     showStatus(item: TodoItem): string {
         if (item.status == 0) {
@@ -25,24 +33,24 @@ class TodoList extends Component<any, any>{
     }
     getTime(item: TodoItem): string {
         const dateStr = item.expire_date;
-        console.log(dateStr);
         const date = new Date(Date.parse(dateStr));
         const dateStrShow = date.toLocaleString();
-        console.log(dateStrShow);
         return dateStrShow;
     }
     editButtonDisabled(item: TodoItem) {
         if (item.status != 1) return false;
+        // this.testing();
         return true;
     }
     doneButtonDiabled(item: TodoItem) {
         if (item.status == 1) return true;
+        // this.testing();
         return false;
     }
     render() {
-        const wholeData = todoContext.ShowTodos();
-        const todoData = this.filterTodo(wholeData);
-        console.log(wholeData);
+        const todoData = this.filterTodo(todoContext.ShowTodos());
+        console.log("list render");
+        console.log(todoData)
         return (<Content className='todoList'
             style={{
                 padding: 24,

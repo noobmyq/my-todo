@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 18:08:09
- * @LastEditTime: 2021-12-24 19:41:08
+ * @LastEditTime: 2021-12-24 22:08:28
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/App.tsx
  */
 import { Component } from 'react';
@@ -15,15 +15,21 @@ import CreateTodos from './create/create';
 import TodoList from './list/list';
 const { Header, Content, Sider } = Layout
 // default
-@observer class Todo extends Component<any, { sortBy: string }> {
+@observer class Todo extends Component<any, { time: string }> {
+
     constructor(props: any) {
         super(props);
-        this.state = { sortBy: 'date' }
+        this.state = {
+            time: new Date().toLocaleTimeString()
+        }
     };
     // use to refresh
     componentDidMount() {
-        todoContext.FetchTodos();
+        setInterval(() => {
+            this.setState({ time: new Date().toLocaleTimeString() })
+        }, 1000);
     }
+
     filterTodo(allTodo: TodoItem[]): TodoItem[] {
         return allTodo.filter((item, index, array) => { return item.status == todoContext.showType; });
     }
@@ -31,8 +37,7 @@ const { Header, Content, Sider } = Layout
     render() {
         const wholeData = todoContext.ShowTodos();
         const todoData = this.filterTodo(wholeData);
-        console.log(wholeData)
-        // console.log(todoContext.showType)
+        console.log("apps render")
         return (
             <Layout>
                 <Sider width={200} className="site-layout-background">

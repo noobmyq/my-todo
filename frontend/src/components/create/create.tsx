@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-24 14:46:24
- * @LastEditTime: 2021-12-24 19:25:50
+ * @LastEditTime: 2021-12-24 22:10:06
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/create/create.tsx
  */
 import moment, { Moment } from 'moment'
@@ -8,6 +8,7 @@ import { Component, FormEvent } from 'react';
 import { TodoItem } from '../../constant/interface';
 import { Input, Form, Layout, DatePicker, Space, Button, Select } from 'antd';
 import todoContext from '../Todos';
+import { observer } from 'mobx-react';
 const { Header, Content, Sider } = Layout
 const { Option } = Select;
 function disabledDate(current: any) {
@@ -18,28 +19,27 @@ function disabledDate(current: any) {
 let dateStr: string
 let priority: string
 
-class CreateTodos extends Component<any, any>{
+@observer class CreateTodos extends Component<any, any>{
     constructor(props: any) {
         super(props);
     }
-
+    componentDidMount(): void {
+    }
     handleDateChange(value: Moment) {
         dateStr = value.format().toString();
-        console.log(dateStr)
+        // console.log(dateStr)
     }
     handlePriorityChange(value: any) {
-        console.log(value)
+        // console.log(value)
         priority = value
     }
 
     reset(e: FormEvent) {
         e.preventDefault();
-        console.log("here");
+        // console.log("here");
         todoContext.ClearTodos();
     }
     submit(value: any) {
-        // this.props.form.validateFields((values: { content: string }) => {
-        // console.log(this.dateStr)
         const newTodo: TodoItem = {
             id: todoContext.numofItems,
             title: value.title,
@@ -48,9 +48,8 @@ class CreateTodos extends Component<any, any>{
             expire_date: dateStr,
             priority: Number(priority)
         }
+        // this.setState(this.state);
         todoContext.AddTodos(newTodo);
-        // this.props.form.resetFields();
-        // });
     }
     render() {
         return (
