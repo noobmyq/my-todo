@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-24 15:03:12
- * @LastEditTime: 2021-12-24 16:16:56
+ * @LastEditTime: 2021-12-24 16:24:35
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/list/list.tsx
  */
 import { Layout, List, Button, Typography, Drawer } from 'antd';
@@ -26,7 +26,7 @@ class TodoList extends Component<any, any>{
         const dateStr = item.expire_date;
         console.log(dateStr);
         const date = new Date(Date.parse(dateStr));
-        const dateStrShow = date.toLocaleDateString();
+        const dateStrShow = date.toLocaleString();
         console.log(dateStrShow);
         return dateStrShow;
     }
@@ -63,7 +63,7 @@ class TodoList extends Component<any, any>{
                     ]}>
                         <List.Item.Meta
                             title={<div>{item.id}</div>}
-                            description={this.getTime(item)}
+                            description={<div>到期时间:  {this.getTime(item)}</div>}
                         />
                         <Typography.Text mark>[{this.showStatus(item)}] </Typography.Text>{item.content}
 
