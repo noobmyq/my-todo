@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-24 14:43:19
- * @LastEditTime: 2021-12-24 16:52:33
+ * @LastEditTime: 2021-12-24 19:43:00
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/sider/category.tsx
  */
 import { Menu } from 'antd'
@@ -9,6 +9,7 @@ const { SubMenu } = Menu;
 
 let handleClick = (e: any) => {
     todoContext.showType = Number(e.key);
+    todoContext.FetchTodos();
 }
 
 const Category: React.FC = () => {

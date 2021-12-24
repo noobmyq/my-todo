@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 18:08:09
- * @LastEditTime: 2021-12-24 17:38:02
+ * @LastEditTime: 2021-12-24 19:41:08
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/App.tsx
  */
 import { Component } from 'react';
@@ -20,15 +20,19 @@ const { Header, Content, Sider } = Layout
         super(props);
         this.state = { sortBy: 'date' }
     };
+    // use to refresh
+    componentDidMount() {
+        todoContext.FetchTodos();
+    }
     filterTodo(allTodo: TodoItem[]): TodoItem[] {
         return allTodo.filter((item, index, array) => { return item.status == todoContext.showType; });
     }
 
     render() {
-        const wholeData = todoContext.todoList;
+        const wholeData = todoContext.ShowTodos();
         const todoData = this.filterTodo(wholeData);
         console.log(wholeData)
-        console.log(todoContext.showType)
+        // console.log(todoContext.showType)
         return (
             <Layout>
                 <Sider width={200} className="site-layout-background">

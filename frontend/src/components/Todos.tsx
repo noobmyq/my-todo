@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 20:57:47
- * @LastEditTime: 2021-12-24 17:19:01
+ * @LastEditTime: 2021-12-24 19:45:19
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/Todos.tsx
  */
 import { action, observable } from 'mobx'
@@ -79,12 +79,16 @@ class TodoContext {
             }).catch(() => { message.error('创建失败') })
 
     }
-    @action FetchTodos(): TodoItem[] {
-        provider.getInstance().get('/todo/').then((response: AxiosResponse) => {
-            this.todoList = response.data;
-            console.log(this.todoList)
-            // console.log(this.todoList[0].id);
-        }).catch(() => { message.error("???") })
+    @action FetchTodos = (): void => {
+        provider.getInstance().get('/todo/').
+            then((response: AxiosResponse) => {
+                this.todoList = response.data;
+                console.log(response.data)
+            }).catch(() => { message.error("???") })
+    }
+    @action ShowTodos(): TodoItem[] {
+        this.FetchTodos();
+        console.log(this.todoList)
         return this.todoList;
     }
 }

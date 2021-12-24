@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-24 14:46:24
- * @LastEditTime: 2021-12-24 17:30:15
+ * @LastEditTime: 2021-12-24 19:25:50
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/create/create.tsx
  */
 import moment, { Moment } from 'moment'
@@ -97,7 +97,7 @@ class CreateTodos extends Component<any, any>{
                             name="priority"
                             rules={[{ required: true, message: '选择优先级' }]}
                         >
-                            <Select defaultValue="1" onChange={this.handlePriorityChange}>
+                            <Select style={{ width: 150 }} onChange={this.handlePriorityChange} placeholder="选择优先级">
                                 <Option value="1">优先级1</Option>
                                 <Option value="2">优先级2</Option>
                                 <Option value="3">优先级3</Option>

@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-24 15:03:12
- * @LastEditTime: 2021-12-24 17:38:30
+ * @LastEditTime: 2021-12-24 19:43:57
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/list/list.tsx
  */
 import { Layout, List, Button, Typography, Drawer } from 'antd';
@@ -40,9 +40,9 @@ class TodoList extends Component<any, any>{
         return false;
     }
     render() {
-
-        const wholeData = todoContext.todoList;
+        const wholeData = todoContext.ShowTodos();
         const todoData = this.filterTodo(wholeData);
+        console.log(wholeData);
         return (<Content className='todoList'
             style={{
                 padding: 24,
