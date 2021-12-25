@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-24 14:46:24
- * @LastEditTime: 2021-12-25 12:40:39
+ * @LastEditTime: 2021-12-25 13:32:57
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/create/create.tsx
  */
 import moment, { Moment } from 'moment'
@@ -105,13 +105,13 @@ let priority: string
                     </Space>
                     <Space direction='vertical'>
                         <Form.Item wrapperCol={{ offset: 10, span: 16 }}>
-                            <Button type="primary" htmlType="submit" style={{ height: 50, width: 100 }}>
-                                Submit
+                            <Button type="primary" htmlType="submit" style={{ height: 50, width: 120 }}>
+                                提交
                             </Button>
                         </Form.Item>
                         <Form.Item wrapperCol={{ offset: 10, span: 16 }} >
-                            <Button type="primary" htmlType="reset" style={{ height: 50, width: 100 }}>
-                                Clear
+                            <Button type="primary" htmlType="reset" style={{ height: 50, width: 120 }}>
+                                清空所有事项
                             </Button>
                         </Form.Item>
                     </Space>

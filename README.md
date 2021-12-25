@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-12-21 15:55:14
- * @LastEditTime: 2021-12-24 22:15:06
+ * @LastEditTime: 2021-12-25 13:35:23
  * @FilePath: /new-simple-todo/my-todo/README.md
 -->
 # A todo-project..
@@ -92,3 +92,11 @@ Type '{ children: Element; layout: "inline"; onSubmit: () => void; }' is not ass
 * can re-render the pages every second, still cannot re-render based on events..strange
 * not able to handle observer, may try listener tomorrow
 
+---
+### Dec.25
+
+#### frontend
+* draw the update drawer
+
+#### backend
+* add function to check if expired

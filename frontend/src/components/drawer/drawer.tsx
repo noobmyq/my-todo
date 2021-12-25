@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-25 12:13:02
- * @LastEditTime: 2021-12-25 13:24:31
+ * @LastEditTime: 2021-12-25 13:32:42
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/drawer/drawer.tsx
  */
 
@@ -101,12 +101,12 @@ class DrawerTodos extends Component {
                     <Space direction='vertical'>
                         <Form.Item wrapperCol={{ offset: 10, span: 16 }}>
                             <Button type="primary" htmlType="submit" style={{ height: 50, width: 100 }}>
-                                Submit
+                                更新
                             </Button>
                         </Form.Item>
                         <Form.Item wrapperCol={{ offset: 10, span: 16 }} >
                             <Button type="primary" htmlType="reset" style={{ height: 50, width: 100 }}>
-                                Close
+                                取消
                             </Button>
                         </Form.Item>
                     </Space>
