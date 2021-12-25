@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-12-21 15:55:14
- * @LastEditTime: 2021-12-25 13:35:23
+ * @LastEditTime: 2021-12-25 15:41:16
  * @FilePath: /new-simple-todo/my-todo/README.md
 -->
 # A todo-project..
@@ -100,3 +100,4 @@ Type '{ children: Element; layout: "inline"; onSubmit: () => void; }' is not ass
 
 #### backend
 * add function to check if expired
+* modify some type into enum to increase readability

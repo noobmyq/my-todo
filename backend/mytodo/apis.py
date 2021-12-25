@@ -1,6 +1,6 @@
 '''
 Date: 2021-12-21 17:45:56
-LastEditTime: 2021-12-25 15:27:25
+LastEditTime: 2021-12-25 15:36:58
 FilePath: /new-simple-todo/my-todo/backend/mytodo/apis.py
 '''
 from sqlmodel import Field, Session, select
@@ -22,8 +22,8 @@ def on_startup():
 
 # add origins
 origins = [
-    # "http://localhost:3000",
-    "*"
+    "http://localhost:3000"
+    # "*"
 ]
 
 # middleware
@@ -34,34 +34,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-# first api
-# @app.get("/", tags=["root"])
-# async def read_root() -> Any:
-#     return {"Hello World!"}
-
-
-# class Item(BaseModel):
-#     id: str
-#     item: str
-
-
-# todos = [
-#     {
-#         "id": "1",
-#         "item": "Read a book."
-#     },
-#     {
-#         "id": "2",
-#         "item": "Cycle around town."
-#     }
-# ]
-
-# test
-# @app.get("/first/", response_model=schemas.Item)
-# def first(db: Session = Depends(get_db)):
-#     return crud.create_item(db=db, , id=0)
 
 # get todo items
 
@@ -74,8 +46,6 @@ def get_todos(limit: int = 100):
 
 
 # post todo items
-
-
 @app.post("/todo/", tags=["todos"], response_model=models.Item)
 async def add_todo(item: models.ItemCreate):
     with Session(engine) as session:
