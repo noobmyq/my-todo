@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-24 15:03:12
- * @LastEditTime: 2021-12-25 13:02:03
+ * @LastEditTime: 2021-12-25 13:18:37
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/list/list.tsx
  */
 import { Layout, List, Button, Typography, Drawer } from 'antd';
@@ -88,14 +88,7 @@ const { Header, Content, Sider } = Layout
                     </List.Item>
                 }
             />
-            <Drawer
-                title="update-item"
-                placement='right'
-                onClose={todoContext.closeDetails}
-                visible={todoContext.detailVisable}
-            >
-                <DrawerTodos />
-            </Drawer>
+            <DrawerTodos />
         </Content>)
     }
 }
