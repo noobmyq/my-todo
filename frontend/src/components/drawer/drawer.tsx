@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-25 12:13:02
- * @LastEditTime: 2021-12-25 13:21:02
+ * @LastEditTime: 2021-12-25 13:24:31
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/drawer/drawer.tsx
  */
 
@@ -47,7 +47,7 @@ class DrawerTodos extends Component {
         todoContext.closeDetails(value)
     }
     render() {
-        const editingItem = todoContext.editingItem;
+        const item = todoContext.editingItem;
 
         return (
             <Drawer
@@ -69,14 +69,14 @@ class DrawerTodos extends Component {
                             name="title"
                         // rules={[{ required: true, message: "输入标题" }]}
                         >
-                            <Input style={{ width: 200 }} />
+                            <Input style={{ width: 200 }} placeholder='输入新的标题' />
                         </Form.Item>
                         <Form.Item
                             label="内容"
                             name="content"
                         // rules={[{ required: true, message: '输入todo内容' }]}
                         >
-                            <Input style={{ width: 300 }} placeholder='输入todo内容' />
+                            <Input style={{ width: 300 }} placeholder='输入新的todo内容' />
                         </Form.Item>
 
                         <Form.Item
@@ -84,14 +84,14 @@ class DrawerTodos extends Component {
                             name="expire_date"
                         // rules={[{ required: true, message: '输入到期时间' }]}
                         >
-                            <DatePicker showTime onOk={this.handleDateChange} placeholder="选择到期时间" disabledDate={disabledDate} />
+                            <DatePicker showTime onOk={this.handleDateChange} placeholder="选择新的到期时间" disabledDate={disabledDate} />
                         </Form.Item>
                         <Form.Item
                             label="优先级"
                             name="priority"
                         // rules={[{ required: true, message: '选择优先级' }]}
                         >
-                            <Select style={{ width: 150 }} onChange={this.handlePriorityChange} placeholder="选择优先级" >
+                            <Select style={{ width: 150 }} onChange={this.handlePriorityChange} placeholder="选择新的优先级" >
                                 <Option value="1">优先级1</Option>
                                 <Option value="2">优先级2</Option>
                                 <Option value="3">优先级3</Option>
