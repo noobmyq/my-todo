@@ -1,19 +1,18 @@
 /*
  * @Date: 2021-12-24 15:03:12
- * @LastEditTime: 2021-12-25 15:18:24
+ * @LastEditTime: 2021-12-25 17:18:09
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/list/list.tsx
  */
 import { Layout, List, Button, Typography, Drawer } from 'antd';
 import todoContext from '../Todos';
 import { TodoItem } from '../../constant/interface';
 import { Component } from 'react'
-import { observer } from "mobx-react";
 import '../App.css';
 import DrawerTodos from '../drawer/drawer';
 import moment from 'moment';
 const { Header, Content, Sider } = Layout
 
-@observer class TodoList extends Component<any, { time: string }> {
+class TodoList extends Component<any, { time: string }> {
     constructor(props: any) {
         super(props);
         this.state = { time: new Date().toLocaleTimeString() }

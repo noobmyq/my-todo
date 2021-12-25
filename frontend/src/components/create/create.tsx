@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-24 14:46:24
- * @LastEditTime: 2021-12-25 17:03:26
+ * @LastEditTime: 2021-12-25 17:16:28
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/create/create.tsx
  */
 import moment, { Moment } from 'moment'
@@ -21,13 +21,7 @@ function disabledDate(current: any) {
 let dateStr: string
 let priority: number
 
-// @observer class CreateTodos extends Component<any, any>{
 const CreateTodos = () => {
-    // constructor(props: any) {
-    //     super(props);
-    // }
-    // componentDidMount(): void {
-    // }
     const [form] = Form.useForm()
     const handleDateChange = (value: Moment) => {
         dateStr = value.format().toString();
