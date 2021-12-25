@@ -1,16 +1,13 @@
 /*
  * @Date: 2021-12-24 14:46:24
- * @LastEditTime: 2021-12-25 17:16:28
+ * @LastEditTime: 2021-12-25 17:19:43
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/create/create.tsx
  */
 import moment, { Moment } from 'moment'
-import { Component, FormEvent } from 'react';
+import { FormEvent } from 'react';
 import { TodoItem, TodoPriority, TodoStatus } from '../../constant/interface';
 import { Input, Form, Layout, DatePicker, Space, Button, Select } from 'antd';
 import todoContext from '../Todos';
-import { observer } from 'mobx-react';
-import { FormInstance } from 'rc-field-form';
-import { computed, observable } from 'mobx';
 const { Header, Content, Sider } = Layout
 const { Option } = Select;
 function disabledDate(current: any) {

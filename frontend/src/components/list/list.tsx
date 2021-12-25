@@ -1,15 +1,14 @@
 /*
  * @Date: 2021-12-24 15:03:12
- * @LastEditTime: 2021-12-25 17:18:09
+ * @LastEditTime: 2021-12-25 17:19:34
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/list/list.tsx
  */
-import { Layout, List, Button, Typography, Drawer } from 'antd';
+import { Layout, List, Button, Typography } from 'antd';
 import todoContext from '../Todos';
 import { TodoItem } from '../../constant/interface';
 import { Component } from 'react'
 import '../App.css';
 import DrawerTodos from '../drawer/drawer';
-import moment from 'moment';
 const { Header, Content, Sider } = Layout
 
 class TodoList extends Component<any, { time: string }> {
