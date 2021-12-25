@@ -1,10 +1,10 @@
 /*
  * @Date: 2021-12-21 20:57:47
- * @LastEditTime: 2021-12-25 15:31:05
+ * @LastEditTime: 2021-12-25 16:31:30
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/Todos.tsx
  */
 import { action, observable } from 'mobx'
-import { TodoItem } from "../constant/interface";
+import { TodoItem, TodoStatus } from "../constant/interface";
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 import { message } from 'antd';
 import moment from 'moment';
@@ -32,7 +32,7 @@ class TodoContext {
         this.FetchTodos();
     }
     @action expireItem(item_id: Number): void {
-        provider.getInstance().patch(`/todo/${item_id}/expired`)
+        provider.getInstance().patch(`/todo/${item_id}/` + TodoStatus.EXPIRED.toString())
             .then(() => {
                 this.FetchTodos();
             }).catch(() => { message.error("过期标记失败") })
@@ -50,10 +50,10 @@ class TodoContext {
     }
     @action MarkasDone(item: TodoItem): void {
         const id: Number = item.id;
-        provider.getInstance().patch(`/todo/${id}/done`, id)
+        provider.getInstance().patch(`/todo/${id}/` + TodoStatus.DONE.toString())
             .then(() => {
                 this.FetchTodos();
-            }).catch(() => { message.error("完成失败") })
+            }).catch(() => { message.error("标记完成失败") })
     }
     @action UpdateTodos(item: TodoItem): void {
         console.log(item);

@@ -1,14 +1,16 @@
 /*
  * @Date: 2021-12-24 14:46:24
- * @LastEditTime: 2021-12-25 15:35:09
+ * @LastEditTime: 2021-12-25 16:57:38
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/create/create.tsx
  */
 import moment, { Moment } from 'moment'
 import { Component, FormEvent } from 'react';
-import { TodoItem } from '../../constant/interface';
+import { TodoItem, TodoPriority, TodoStatus } from '../../constant/interface';
 import { Input, Form, Layout, DatePicker, Space, Button, Select } from 'antd';
 import todoContext from '../Todos';
 import { observer } from 'mobx-react';
+import { FormInstance } from 'rc-field-form';
+import { computed, observable } from 'mobx';
 const { Header, Content, Sider } = Layout
 const { Option } = Select;
 function disabledDate(current: any) {
@@ -17,7 +19,7 @@ function disabledDate(current: any) {
 }
 
 let dateStr: string
-let priority: string
+let priority: number
 
 @observer class CreateTodos extends Component<any, any>{
     constructor(props: any) {
@@ -27,16 +29,14 @@ let priority: string
     }
     handleDateChange(value: Moment) {
         dateStr = value.format().toString();
-        // console.log(dateStr)
     }
+
     handlePriorityChange(value: any) {
-        // console.log(value)
         priority = value
     }
 
     reset(e: FormEvent) {
         e.preventDefault();
-        // console.log("here");
         todoContext.ClearTodos();
     }
     submit(value: any) {
@@ -46,10 +46,10 @@ let priority: string
             content: value.content,
             status: 0,
             expire_date: dateStr,
-            priority: Number(priority)
+            priority: priority
         }
-        // this.setState(this.state);
         todoContext.AddTodos(newTodo);
+
     }
     render() {
         return (
@@ -97,9 +97,9 @@ let priority: string
                             rules={[{ required: true, message: '选择优先级' }]}
                         >
                             <Select style={{ width: 150 }} onChange={this.handlePriorityChange} placeholder="选择优先级">
-                                <Option value="1">优先级1</Option>
-                                <Option value="2">优先级2</Option>
-                                <Option value="3">优先级3</Option>
+                                <Option value={TodoPriority.FIRST}>优先级1</Option>
+                                <Option value={TodoPriority.SECOND}>优先级2</Option>
+                                <Option value={TodoPriority.THIRD}>优先级3</Option>
                             </Select>
                         </Form.Item>
                     </Space>

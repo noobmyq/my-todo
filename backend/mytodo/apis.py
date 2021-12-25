@@ -1,6 +1,6 @@
 '''
 Date: 2021-12-21 17:45:56
-LastEditTime: 2021-12-25 15:36:58
+LastEditTime: 2021-12-25 16:18:38
 FilePath: /new-simple-todo/my-todo/backend/mytodo/apis.py
 '''
 from sqlmodel import Field, Session, select
@@ -56,28 +56,14 @@ async def add_todo(item: models.ItemCreate):
         return db_item
 
 
-# mark as expired
-@app.patch("/todo/{item_id}/expired", tags=["expired"])
-async def mark_as_expired(item_id: int):
+# remark status
+@app.patch("/todo/{item_id}/{status}", tags=["expired"])
+async def modify_status(item_id: int, status: int):
     with Session(engine) as session:
         db_item = session.get(models.Item, item_id)
         if not db_item:
             raise HTTPException(status_code=404, detail="Item not found")
-        db_item.status = 2
-        session.add(db_item)
-        session.commit()
-        session.refresh(db_item)
-        return db_item
-
-
-# mark as done
-@app.patch("/todo/{item_id}/done", tags=["Done"])
-async def mark_as_done(item_id: int):
-    with Session(engine) as session:
-        db_item = session.get(models.Item, item_id)
-        if not db_item:
-            raise HTTPException(status_code=404, detail="Item not found")
-        db_item.status = 1
+        db_item.status = models.TodoStatus(status)
         session.add(db_item)
         session.commit()
         session.refresh(db_item)
@@ -91,11 +77,9 @@ async def update_item(item_id: int, item: models.ItemUpdate):
         db_item = session.get(models.Item, item_id)
         if not db_item:
             raise HTTPException(status_code=404, detail="Item not found")
-        db_item.status = item.status
-        db_item.content = item.content
-        db_item.expire_date = item.expire_date
-        db_item.title = item.title
-        db_item.priority = item.priority
+        item_data = item.dict(exclude_unset=True)
+        for key, value in item_data.items():
+            setattr(db_item, key, value)
         session.add(db_item)
         session.commit()
         session.refresh(db_item)

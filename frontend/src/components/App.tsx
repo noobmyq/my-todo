@@ -1,13 +1,13 @@
 /*
  * @Date: 2021-12-21 18:08:09
- * @LastEditTime: 2021-12-25 13:02:12
+ * @LastEditTime: 2021-12-25 16:50:39
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/App.tsx
  */
 import { Component } from 'react';
 import './App.css';
 // import Header from "./Header"
 import { observer } from "mobx-react";
-import { Layout } from 'antd';
+import { FormInstance, Layout } from 'antd';
 import todoContext from './Todos';
 import { TodoItem } from '../constant/interface';
 import Category from './sider/category'
