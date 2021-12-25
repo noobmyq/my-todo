@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-12-21 15:55:14
- * @LastEditTime: 2021-12-24 14:40:32
+ * @LastEditTime: 2021-12-24 22:15:06
  * @FilePath: /new-simple-todo/my-todo/README.md
 -->
 # A todo-project..
@@ -78,7 +78,7 @@ Type '{ children: Element; layout: "inline"; onSubmit: () => void; }' is not ass
 * add sider but not seems to working
 #### backend
 * extending current models, add status
-* try rebasing on sqlmodel
+* rebase on sqlmodel
 * sqlmodel is easier than creating a model myself.........read the wrong doc before
 
 ---
@@ -88,6 +88,7 @@ Type '{ children: Element; layout: "inline"; onSubmit: () => void; }' is not ass
 * redraw the UI(Just add default antd.css and all is done..F**K)
 
 #### backend
-* try to add expire_date
-
+* add expire_date
+* can re-render the pages every second, still cannot re-render based on events..strange
+* not able to handle observer, may try listener tomorrow
 

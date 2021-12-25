@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 20:57:47
- * @LastEditTime: 2021-12-24 22:08:17
+ * @LastEditTime: 2021-12-25 13:01:52
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/Todos.tsx
  */
 import { action, observable, computed } from 'mobx'
@@ -44,12 +44,18 @@ class TodoContext {
     }
     @action UpdateTodos(item: TodoItem): void {
         console.log(item);
-        const id: Number = item.id;
-        const update_item = {
+        const id: Number = this.editingItem.id;
+        const update_item: TodoItem = {
+            id: id,
             content: item.content,
-            status: item.status
+            status: item.status,
+            expire_date: item.expire_date,
+            title: item.title,
+            priority: item.priority
         }
-        provider.getInstance().patch('/items/' + id.toString(), update_item)
+
+        const json = JSON.parse(JSON.stringify(update_item));
+        provider.getInstance().patch('/todo/' + id.toString(), json)
             .then(() => {
                 this.FetchTodos();
             }).catch(() => { message.error("更新失败") })
@@ -84,7 +90,7 @@ class TodoContext {
         provider.getInstance().get('/todo/').
             then((response: AxiosResponse) => {
                 this.todoList = response.data;
-                console.log(this.todoList)
+                // console.log(this.todoList)
             }).catch(() => { message.error("???") })
     }
     @action ShowTodos(): TodoItem[] {

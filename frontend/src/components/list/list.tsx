@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-24 15:03:12
- * @LastEditTime: 2021-12-24 22:09:25
+ * @LastEditTime: 2021-12-25 13:02:03
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/list/list.tsx
  */
 import { Layout, List, Button, Typography, Drawer } from 'antd';
@@ -8,7 +8,8 @@ import todoContext from '../Todos';
 import { TodoItem } from '../../constant/interface';
 import { Component } from 'react'
 import { observer } from "mobx-react";
-import { observable } from 'mobx';
+import '../App.css';
+import DrawerTodos from '../drawer/drawer';
 const { Header, Content, Sider } = Layout
 
 @observer class TodoList extends Component<any, { time: string }> {
@@ -49,8 +50,8 @@ const { Header, Content, Sider } = Layout
     }
     render() {
         const todoData = this.filterTodo(todoContext.ShowTodos());
-        console.log("list render");
-        console.log(todoData)
+        // console.log("list render");
+        // console.log(todoData)
         return (<Content className='todoList'
             style={{
                 padding: 24,
@@ -93,7 +94,7 @@ const { Header, Content, Sider } = Layout
                 onClose={todoContext.closeDetails}
                 visible={todoContext.detailVisable}
             >
-                abc
+                <DrawerTodos />
             </Drawer>
         </Content>)
     }

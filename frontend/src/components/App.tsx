@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 18:08:09
- * @LastEditTime: 2021-12-24 22:08:28
+ * @LastEditTime: 2021-12-25 13:02:12
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/App.tsx
  */
 import { Component } from 'react';
@@ -37,7 +37,7 @@ const { Header, Content, Sider } = Layout
     render() {
         const wholeData = todoContext.ShowTodos();
         const todoData = this.filterTodo(wholeData);
-        console.log("apps render")
+        // console.log("apps render")
         return (
             <Layout>
                 <Sider width={200} className="site-layout-background">
