@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 20:57:47
- * @LastEditTime: 2021-12-25 15:22:39
+ * @LastEditTime: 2021-12-25 15:31:05
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/Todos.tsx
  */
 import { action, observable } from 'mobx'
@@ -26,14 +26,18 @@ class TodoContext {
         for (var i = 0; i < this.todoList.length; i++) {
             if (moment(this.todoList[i].expire_date) < moment(new Date())) {
                 this.todoList[i].status = 2;
-                // this.UpdateTodos(this.todoList[i]);
+                this.expireItem(this.todoList[i].id);
             }
         }
         this.FetchTodos();
     }
-
+    @action expireItem(item_id: Number): void {
+        provider.getInstance().patch(`/todo/${item_id}/expired`)
+            .then(() => {
+                this.FetchTodos();
+            }).catch(() => { message.error("过期标记失败") })
+    }
     @action closeDetails = (e: any): void => {
-        console.log(this.detailVisable)
         this.detailVisable = false;
         this.editingItem = 0;
         this.FetchTodos();

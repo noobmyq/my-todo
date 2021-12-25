@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-24 14:46:24
- * @LastEditTime: 2021-12-25 15:17:41
+ * @LastEditTime: 2021-12-25 15:35:09
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/create/create.tsx
  */
 import moment, { Moment } from 'moment'
@@ -89,7 +89,7 @@ let priority: string
                             name="expire_date"
                             rules={[{ required: true, message: '输入到期时间' }]}
                         >
-                            <DatePicker showTime onOk={this.handleDateChange} placeholder="选择到期时间" />
+                            <DatePicker showTime onOk={this.handleDateChange} placeholder="选择到期时间" disabledDate={disabledDate} />
                         </Form.Item>
                         <Form.Item
                             label="优先级"
