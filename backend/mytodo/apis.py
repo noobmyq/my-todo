@@ -1,6 +1,6 @@
 '''
 Date: 2021-12-21 17:45:56
-LastEditTime: 2021-12-24 17:37:14
+LastEditTime: 2021-12-25 15:27:25
 FilePath: /new-simple-todo/my-todo/backend/mytodo/apis.py
 '''
 from sqlmodel import Field, Session, select
@@ -86,6 +86,20 @@ async def add_todo(item: models.ItemCreate):
         return db_item
 
 
+# mark as expired
+@app.patch("/todo/{item_id}/expired", tags=["expired"])
+async def mark_as_expired(item_id: int):
+    with Session(engine) as session:
+        db_item = session.get(models.Item, item_id)
+        if not db_item:
+            raise HTTPException(status_code=404, detail="Item not found")
+        db_item.status = 2
+        session.add(db_item)
+        session.commit()
+        session.refresh(db_item)
+        return db_item
+
+
 # mark as done
 @app.patch("/todo/{item_id}/done", tags=["Done"])
 async def mark_as_done(item_id: int):
@@ -99,9 +113,8 @@ async def mark_as_done(item_id: int):
         session.refresh(db_item)
         return db_item
 
+
 # update
-
-
 @app.patch("/todo/{item_id}", tags=["update"])
 async def update_item(item_id: int, item: models.ItemUpdate):
     with Session(engine) as session:
@@ -120,8 +133,6 @@ async def update_item(item_id: int, item: models.ItemUpdate):
 
 
 # clear all
-
-
 @app.delete("/clear/", tags=["clear"])
 async def clear_items():
     with Session(engine) as session:
