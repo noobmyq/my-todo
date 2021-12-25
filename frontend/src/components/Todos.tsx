@@ -1,14 +1,13 @@
 /*
  * @Date: 2021-12-21 20:57:47
- * @LastEditTime: 2021-12-25 13:01:52
+ * @LastEditTime: 2021-12-25 15:22:39
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/Todos.tsx
  */
-import { action, observable, computed } from 'mobx'
+import { action, observable } from 'mobx'
 import { TodoItem } from "../constant/interface";
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 import { message } from 'antd';
-import { observer } from 'mobx-react';
-import React from 'react'
+import moment from 'moment';
 
 class Provider {
     getInstance(): AxiosInstance {
@@ -22,6 +21,16 @@ class TodoContext {
     @observable detailVisable: boolean = false;
     @observable editingItem: TodoItem | any = 0;
     @observable showType: number = 0;
+
+    @action checkExpired(): void {
+        for (var i = 0; i < this.todoList.length; i++) {
+            if (moment(this.todoList[i].expire_date) < moment(new Date())) {
+                this.todoList[i].status = 2;
+                // this.UpdateTodos(this.todoList[i]);
+            }
+        }
+        this.FetchTodos();
+    }
 
     @action closeDetails = (e: any): void => {
         console.log(this.detailVisable)
@@ -90,11 +99,11 @@ class TodoContext {
         provider.getInstance().get('/todo/').
             then((response: AxiosResponse) => {
                 this.todoList = response.data;
-                // console.log(this.todoList)
             }).catch(() => { message.error("???") })
     }
     @action ShowTodos(): TodoItem[] {
         this.FetchTodos();
+        this.checkExpired();
         return this.todoList;
     }
 }
