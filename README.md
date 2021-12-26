@@ -121,6 +121,7 @@ Type '{ children: Element; layout: "inline"; onSubmit: () => void; }' is not ass
 * add the sort buttons
 * add local images, due to chromium's security restrictions
 * build a simple server
+* offer yarn method with yarn.lock instead of npm only
 
 #### backend
 * add the test function for apis.py
