@@ -119,7 +119,9 @@ Type '{ children: Element; layout: "inline"; onSubmit: () => void; }' is not ass
 
 #### frontend
 * add the sort buttons
-* add a local images, due to chromium... build a simple server
+* add local images, due to chromium's security restrictions
+* build a simple server
 
 #### backend
-* no modification..开摆！
+* add the test function for apis.py
+* import some additional modules
