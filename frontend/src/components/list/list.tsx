@@ -1,11 +1,11 @@
 /*
  * @Date: 2021-12-24 15:03:12
- * @LastEditTime: 2021-12-26 15:17:31
+ * @LastEditTime: 2021-12-26 15:27:16
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/list/list.tsx
  */
 import { Layout, List, Button, Typography, Radio, RadioChangeEvent } from 'antd';
 import todoContext from '../Todos';
-import { TodoItem, TodoSort } from '../../constant/interface';
+import { TodoItem, TodoSort, TodoStatus } from '../../constant/interface';
 import { Component } from 'react'
 import '../App.css';
 import DrawerTodos from '../drawer/drawer';
@@ -25,11 +25,18 @@ class TodoList extends Component<any, { time: string }> {
             this.setState({ time: new Date().toLocaleTimeString() })
         }, 1000);
     }
-    showStatus(item: TodoItem): string {
-        if (item.status == 0) {
-            return "Todo";
-        } else
-            return "Done";
+    showStatus(item: TodoItem) {
+        switch (item.status) {
+            case TodoStatus.TODO:
+                return "Todo";
+                break;
+            case TodoStatus.DONE:
+                return "Done";
+                break;
+            case TodoStatus.EXPIRED:
+                return "Expired";
+                break;
+        }
     };
     filterTodo(allTodo: TodoItem[]): TodoItem[] {
         return allTodo.filter((item, index, array) => { return item.status == todoContext.showType; });
@@ -41,12 +48,12 @@ class TodoList extends Component<any, { time: string }> {
         return dateStrShow;
     }
     editButtonDisabled(item: TodoItem) {
-        if (item.status != 1) return false;
+        if (item.status != TodoStatus.TODO) return true;
         // this.testing();
-        return true;
+        return false;
     }
     doneButtonDiabled(item: TodoItem) {
-        if (item.status == 1) return true;
+        if (item.status != TodoStatus.TODO) return true;
         // this.testing();
         return false;
     }
@@ -54,13 +61,13 @@ class TodoList extends Component<any, { time: string }> {
         const showType = todoContext.showType;
         var URL: string = "";
         switch (showType) {
-            case 0:
+            case TodoStatus.TODO:
                 URL = "http://127.0.0.1:8001/assets/picture/mnn.png"
                 break;
-            case 1:
+            case TodoStatus.DONE:
                 URL = "http://127.0.0.1:8001/assets/picture/mnn1.png"
                 break;
-            case 2:
+            case TodoStatus.EXPIRED:
                 URL = "http://127.0.0.1:8001/assets/picture/mnn2.png"
                 break;
         }

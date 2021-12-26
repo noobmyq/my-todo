@@ -1,7 +1,8 @@
 [tool.poetry]
-name = "app"
+name = "todoReactApp"
 version = "0.1.0"
 description = ""
+license = "MIT"
 authors = ["noobmyq <2331029011@qq.com>"]
 
 [tool.poetry.dependencies]
@@ -12,8 +13,10 @@ SQLAlchemy = "^1.4.28"
 sqlmodel = "^0.0.5"
 
 
+
 [tool.poetry.dev-dependencies]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+

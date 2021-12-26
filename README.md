@@ -81,7 +81,7 @@ $ poetry add sqlmodel
 Type '{ children: Element; layout: "inline"; onSubmit: () => void; }' is not assignable to type 'IntrinsicAttributes & FormProps<any> & { children?: ReactNode; } & { ref?: Ref<FormInstan
 ```
 * cannot lively update the frontend
-* ugly frontend UI
+* ~~ugly frontend UI~~(use antd.css!!!)
 * ~~not able to rebase the model on sqlmodel yet(necessary?)~~
 ---
 ### Dec.23
@@ -119,7 +119,10 @@ Type '{ children: Element; layout: "inline"; onSubmit: () => void; }' is not ass
 
 #### frontend
 * add the sort buttons
-* add a local images, due to chromium... build a simple server
+* add local images, due to chromium's security restrictions
+* build a simple server
+* offer yarn method with yarn.lock instead of npm only
 
 #### backend
-* no modification..开摆！
+* add the test function for apis.py
+* import some additional modules
