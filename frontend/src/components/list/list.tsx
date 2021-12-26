@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-24 15:03:12
- * @LastEditTime: 2021-12-26 14:38:18
+ * @LastEditTime: 2021-12-26 15:17:31
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/list/list.tsx
  */
 import { Layout, List, Button, Typography, Radio, RadioChangeEvent } from 'antd';
@@ -50,10 +50,27 @@ class TodoList extends Component<any, { time: string }> {
         // this.testing();
         return false;
     }
+    getImage(): string {
+        const showType = todoContext.showType;
+        var URL: string = "";
+        switch (showType) {
+            case 0:
+                URL = "http://127.0.0.1:8001/assets/picture/mnn.png"
+                break;
+            case 1:
+                URL = "http://127.0.0.1:8001/assets/picture/mnn1.png"
+                break;
+            case 2:
+                URL = "http://127.0.0.1:8001/assets/picture/mnn2.png"
+                break;
+        }
+        return URL;
+
+    }
     render() {
         const todoData = this.filterTodo(todoContext.ShowTodos());
-        // const imageURL = "file:///home/myq/program/new-simple-todo/my-todo/frontend/assets/picture/mnn.jpg"
-        const imageURL = "http://127.0.0.1:8001/assets/picture/mnn.png"
+        // const imageURL = "http://127.0.0.1:8001/assets/picture/mnn.png"
+        const imageURL = this.getImage();
         console.log(imageURL)
         return (<Content className='todoList'
             style={{
