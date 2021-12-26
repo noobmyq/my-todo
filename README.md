@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-12-21 15:55:14
- * @LastEditTime: 2021-12-26 14:40:54
+ * @LastEditTime: 2021-12-26 21:48:14
  * @FilePath: /new-simple-todo/my-todo/README.md
 -->
 # A todo-project..
@@ -11,7 +11,7 @@ this readme is more like a diary to record the process..
 will reorganize later
 please go to stable branch
 ```
-$ git checkout stable
+$ git checkout main
 ```
 
 ## frontend
