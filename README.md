@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-12-21 15:55:14
- * @LastEditTime: 2021-12-25 15:41:16
+ * @LastEditTime: 2021-12-26 11:12:57
  * @FilePath: /new-simple-todo/my-todo/README.md
 -->
 # A todo-project..
@@ -23,6 +23,9 @@ $ poetry install
 $ poetry run python -m mytodo serve --debug
 ```
 please go to http://127.0.0.1:8000
+
+---
+**Below is just a diary please** ***ignore*** **it!!!!**
 ## start at Dec.21..
 
 * please make sure your environment is correct
@@ -101,3 +104,12 @@ Type '{ children: Element; layout: "inline"; onSubmit: () => void; }' is not ass
 #### backend
 * add function to check if expired
 * modify some type into enum to increase readability
+
+---
+### Dec.26
+
+#### frontend
+* add the sort buttons
+
+#### backend
+* no modification..开摆！
