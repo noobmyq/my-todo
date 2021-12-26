@@ -1,6 +1,6 @@
 '''
 Date: 2021-12-21 17:45:56
-LastEditTime: 2021-12-25 16:18:38
+LastEditTime: 2021-12-26 11:05:36
 FilePath: /new-simple-todo/my-todo/backend/mytodo/apis.py
 '''
 from sqlmodel import Field, Session, select
@@ -57,7 +57,7 @@ async def add_todo(item: models.ItemCreate):
 
 
 # remark status
-@app.patch("/todo/{item_id}/{status}", tags=["expired"])
+@app.patch("/todo/{item_id}/{status}", tags=["update"])
 async def modify_status(item_id: int, status: int):
     with Session(engine) as session:
         db_item = session.get(models.Item, item_id)

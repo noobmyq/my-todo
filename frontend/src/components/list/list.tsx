@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-24 15:03:12
- * @LastEditTime: 2021-12-26 10:54:44
+ * @LastEditTime: 2021-12-26 11:02:39
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/list/list.tsx
  */
 import { Layout, List, Button, Typography, Radio, RadioChangeEvent } from 'antd';
@@ -16,12 +16,10 @@ class TodoList extends Component<any, { time: string }> {
         super(props);
         this.state = { time: new Date().toLocaleTimeString() }
     }
-    // // use to refresh
     sortBy(e: RadioChangeEvent): void {
-        console.log(e.target.value)
-        // this.setState({ sortBy: e.target.value })
         todoContext.sortBy(e.target.value);
     }
+    // // use to refresh
     componentDidMount() {
         setInterval(() => {
             this.setState({ time: new Date().toLocaleTimeString() })
