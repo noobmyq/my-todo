@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-21 20:57:47
- * @LastEditTime: 2021-12-26 10:57:23
+ * @LastEditTime: 2021-12-26 13:34:56
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/Todos.tsx
  */
 import { TodoItem, TodoSort, TodoStatus } from "../constant/interface";
@@ -21,6 +21,14 @@ class TodoContext {
     editingItem: TodoItem | any = 0;
     showType: number = 0;
     sortType: number = TodoSort.BYCREATEDATE;
+    images: any = 0;
+
+    getFiles(): void {
+        provider.getInstance().post('/assets/')
+            .then((response: AxiosResponse) => {
+                this.images = response.data
+            }).catch(() => { message.error("获取图片失败") })
+    }
 
     checkExpired(): void {
         for (var i = 0; i < this.todoList.length; i++) {
@@ -118,6 +126,7 @@ class TodoContext {
             then((response: AxiosResponse) => {
                 this.todoList = response.data;
                 this.sortBy(this.sortType)
+                // this.getFiles();
             }).catch(() => { message.error("???") })
     }
     ShowTodos(): TodoItem[] {

@@ -1,14 +1,15 @@
 '''
 Date: 2021-12-21 17:45:56
-LastEditTime: 2021-12-26 11:05:36
+LastEditTime: 2021-12-26 13:40:00
 FilePath: /new-simple-todo/my-todo/backend/mytodo/apis.py
 '''
 from sqlmodel import Field, Session, select
 from fastapi.middleware.cors import CORSMiddleware
 from .database import create_db_and_tables, engine
 from typing import List, Optional
+import base64
 
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, UploadFile
 from . import models
 
 
@@ -35,8 +36,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# get todo items
 
+# get todo items
 
 @app.get("/todo/", tags=["todo"], response_model=List[models.Item])
 def get_todos(limit: int = 100):
@@ -99,7 +100,7 @@ async def clear_items():
 
 
 # delete
-@app.delete('/items/{item_id}', response_model=models.Item)
+@app.delete('/items/{item_id}', response_model=models.Item, tags=["delete"])
 def delete_item(item_id: int):
     with Session(engine) as session:
         db_item = session.get(models.Item, item_id)

@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-12-21 15:55:14
- * @LastEditTime: 2021-12-26 11:18:53
+ * @LastEditTime: 2021-12-26 14:40:54
  * @FilePath: /new-simple-todo/my-todo/README.md
 -->
 # A todo-project..
@@ -15,8 +15,12 @@ $ git checkout stable
 ```
 
 ## frontend
+
+in case you want some local images:
 ```
-$ cd frontend
+$ cd frontend/server
+$ node server.js # start another server to provide local images
+$ cd ..
 $ npm install
 $ npm start
 ```
@@ -115,6 +119,7 @@ Type '{ children: Element; layout: "inline"; onSubmit: () => void; }' is not ass
 
 #### frontend
 * add the sort buttons
+* add a local images, due to chromium... build a simple server
 
 #### backend
 * no modification..开摆！

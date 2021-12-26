@@ -1,6 +1,6 @@
 /*
  * @Date: 2021-12-24 15:03:12
- * @LastEditTime: 2021-12-26 11:02:39
+ * @LastEditTime: 2021-12-26 14:38:18
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/list/list.tsx
  */
 import { Layout, List, Button, Typography, Radio, RadioChangeEvent } from 'antd';
@@ -52,6 +52,9 @@ class TodoList extends Component<any, { time: string }> {
     }
     render() {
         const todoData = this.filterTodo(todoContext.ShowTodos());
+        // const imageURL = "file:///home/myq/program/new-simple-todo/my-todo/frontend/assets/picture/mnn.jpg"
+        const imageURL = "http://127.0.0.1:8001/assets/picture/mnn.png"
+        console.log(imageURL)
         return (<Content className='todoList'
             style={{
                 padding: 24,
@@ -83,17 +86,29 @@ class TodoList extends Component<any, { time: string }> {
                         }}>
                             完成
                         </Button>
+
                     ]}>
-                        <List.Item.Meta
-                            title={<div>标题： {item.title}</div>}
-                            description={<div>到期时间:  {this.getTime(item)} <div> 优先级: {item.priority}</div></div>}
-                        />
-                        <Typography.Text mark style={{ fontSize: 20 }}>({this.showStatus(item)}) </Typography.Text>  {item.content}
+                        <Layout>
+                            <Sider style={{ width: 100, height: 100 }} width={100}>
+                                <img
+                                    style={{ width: 100, height: 100 }}
+                                    src={imageURL}
+                                />
+                            </Sider>
+                            <Content>
+                                < List.Item.Meta
+                                    style={{ width: 500 }}
+                                    title={<div>标题： {item.title}</div>}
+                                    description={<div>到期时间:  {this.getTime(item)} <div> 优先级: {item.priority}</div></div>}
+                                />
+                                <Typography.Text mark style={{ fontSize: 20 }}>({this.showStatus(item)}) </Typography.Text>  {item.content}
+                            </Content>
+                        </Layout>
 
                     </List.Item>
                 }
             />
-            <DrawerTodos />
+            < DrawerTodos />
         </Content >)
     }
 }
