@@ -6,15 +6,13 @@ license = "MIT"
 authors = ["noobmyq <2331029011@qq.com>"]
 
 [tool.poetry.dependencies]
-aiosqlite = "^0.17.0"
-fastapi = "^0.70.1"
-pydantic-universal-settings = "^0.1.5"
 python = "^3.8"
-pytest = {version = "^6.2.5"}
+uvicorn = {extras = ["standard"], version = "^0.16.0"}
+fastapi = "^0.70.1"
 SQLAlchemy = "^1.4.28"
 sqlmodel = "^0.0.5"
-uvicorn = {extras = ["standard"], version = "^0.16.0"}
-requests = "^2.26.0"
+
+
 
 [tool.poetry.dev-dependencies]
 
