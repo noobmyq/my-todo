@@ -89,3 +89,5 @@ Whenever Yarn or npm need to install a package, they carry out a series of tasks
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+To check more differences and similarity between yarn and npm, check the [Yarn vs npm: Everything You Need to Know](https://www.sitepoint.com/yarn-vs-npm/) will help.
