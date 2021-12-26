@@ -1,9 +1,9 @@
 /*
  * @Date: 2021-12-21 20:57:47
- * @LastEditTime: 2021-12-25 17:21:23
+ * @LastEditTime: 2021-12-26 10:57:23
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/Todos.tsx
  */
-import { TodoItem, TodoStatus } from "../constant/interface";
+import { TodoItem, TodoSort, TodoStatus } from "../constant/interface";
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 import { message } from 'antd';
 import moment from 'moment';
@@ -20,6 +20,7 @@ class TodoContext {
     detailVisable: boolean = false;
     editingItem: TodoItem | any = 0;
     showType: number = 0;
+    sortType: number = TodoSort.BYCREATEDATE;
 
     checkExpired(): void {
         for (var i = 0; i < this.todoList.length; i++) {
@@ -29,6 +30,20 @@ class TodoContext {
             }
         }
         this.FetchTodos();
+    }
+    sortBy(critiria: number): void {
+        switch (critiria) {
+            case TodoSort.BYCREATEDATE:
+                this.todoList.sort((a, b) => { return a.id - b.id })
+                break;
+            case TodoSort.BYEXPIREDATE:
+                this.todoList.sort((a, b) => { return (Date.parse(a.expire_date) - Date.parse(b.expire_date)) })
+                break;
+            case TodoSort.BYPRIORITY:
+                this.todoList.sort((a, b) => { return a.priority - b.priority })
+                break;
+        }
+        this.sortType = critiria
     }
     expireItem(item_id: Number): void {
         provider.getInstance().patch(`/todo/${item_id}/` + TodoStatus.EXPIRED.toString())
@@ -56,7 +71,7 @@ class TodoContext {
     }
     UpdateTodos(item: TodoItem): void {
         console.log(item);
-        const id: Number = this.editingItem.id;
+        const id: number = this.editingItem.id;
         const update_item: TodoItem = {
             id: id,
             content: item.content,
@@ -102,6 +117,7 @@ class TodoContext {
         provider.getInstance().get('/todo/').
             then((response: AxiosResponse) => {
                 this.todoList = response.data;
+                this.sortBy(this.sortType)
             }).catch(() => { message.error("???") })
     }
     ShowTodos(): TodoItem[] {

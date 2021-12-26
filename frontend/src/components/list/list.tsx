@@ -1,11 +1,11 @@
 /*
  * @Date: 2021-12-24 15:03:12
- * @LastEditTime: 2021-12-25 17:19:34
+ * @LastEditTime: 2021-12-26 10:54:44
  * @FilePath: /new-simple-todo/my-todo/frontend/src/components/list/list.tsx
  */
-import { Layout, List, Button, Typography } from 'antd';
+import { Layout, List, Button, Typography, Radio, RadioChangeEvent } from 'antd';
 import todoContext from '../Todos';
-import { TodoItem } from '../../constant/interface';
+import { TodoItem, TodoSort } from '../../constant/interface';
 import { Component } from 'react'
 import '../App.css';
 import DrawerTodos from '../drawer/drawer';
@@ -17,6 +17,11 @@ class TodoList extends Component<any, { time: string }> {
         this.state = { time: new Date().toLocaleTimeString() }
     }
     // // use to refresh
+    sortBy(e: RadioChangeEvent): void {
+        console.log(e.target.value)
+        // this.setState({ sortBy: e.target.value })
+        todoContext.sortBy(e.target.value);
+    }
     componentDidMount() {
         setInterval(() => {
             this.setState({ time: new Date().toLocaleTimeString() })
@@ -55,6 +60,11 @@ class TodoList extends Component<any, { time: string }> {
                 margin: 0,
                 minHeight: 280,
             }}>
+            <Radio.Group defaultValue={todoContext.sortType} onChange={this.sortBy}>
+                <Radio.Button value={TodoSort.BYCREATEDATE}>按创建日期排序</Radio.Button>
+                <Radio.Button value={TodoSort.BYEXPIREDATE}>按到期日期排序</Radio.Button>
+                <Radio.Button value={TodoSort.BYPRIORITY}>按优先级排序</Radio.Button>
+            </Radio.Group>
             <List
                 itemLayout="horizontal"
                 dataSource={todoData}
@@ -86,7 +96,7 @@ class TodoList extends Component<any, { time: string }> {
                 }
             />
             <DrawerTodos />
-        </Content>)
+        </Content >)
     }
 }
 

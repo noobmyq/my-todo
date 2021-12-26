@@ -1,9 +1,14 @@
 /*
  * @Date: 2021-12-21 21:40:04
- * @LastEditTime: 2021-12-25 16:24:54
+ * @LastEditTime: 2021-12-26 10:31:46
  * @FilePath: /new-simple-todo/my-todo/frontend/src/constant/interface.ts
  */
 
+export const TodoSort = {
+    BYPRIORITY: 0,
+    BYEXPIREDATE: 1,
+    BYCREATEDATE: 2
+}
 
 export const TodoStatus = {
     TODO: 0,
@@ -18,10 +23,10 @@ export const TodoPriority = {
 };
 
 export interface TodoItem {
-    id: Number;
+    id: number;
     title: string;
     content: string;
-    status: Number;
+    status: number;
     expire_date: string;
-    priority: Number;
+    priority: number;
 };
