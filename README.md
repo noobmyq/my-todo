@@ -81,7 +81,7 @@ $ poetry add sqlmodel
 Type '{ children: Element; layout: "inline"; onSubmit: () => void; }' is not assignable to type 'IntrinsicAttributes & FormProps<any> & { children?: ReactNode; } & { ref?: Ref<FormInstan
 ```
 * cannot lively update the frontend
-* ugly frontend UI
+* ~~ugly frontend UI~~(use antd.css!!!)
 * ~~not able to rebase the model on sqlmodel yet(necessary?)~~
 ---
 ### Dec.23
