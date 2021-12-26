@@ -1,6 +1,6 @@
 <!--
  * @Date: 2021-12-21 15:55:14
- * @LastEditTime: 2021-12-26 11:12:57
+ * @LastEditTime: 2021-12-26 11:18:53
  * @FilePath: /new-simple-todo/my-todo/README.md
 -->
 # A todo-project..
@@ -9,6 +9,11 @@ hopefully it will be easy..
 but it is impossible..
 this readme is more like a diary to record the process..
 will reorganize later
+please go to stable branch
+```
+$ git checkout stable
+```
+
 ## frontend
 ```
 $ cd frontend
